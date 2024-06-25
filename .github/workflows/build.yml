@@ -25,7 +25,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: apptainer-image
-          path: https://github.com/Qufst/create_apptainer.sif/actions/runs/9659311201/artifacts/1635092654
+          path: https://github.com/Qufst/create_apptainer.sif/actions/runs/9659311201/artifacts/
 
 
       - name: activate the environment from the sif
