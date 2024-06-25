@@ -22,10 +22,8 @@ jobs:
 
       
       - name: Restore artifact
-        uses: actions/download-artifact@v3
-        with: 
-          name: apptainer-image
-          path: https://github.com/Qufst/create_apptainer.sif/actions/runs/9659311201/artifacts/
+        run: |
+          gh run download 9659311201 --repo Qufst/create_apptainer.sif --name apptainer-image
 
 
       - name: activate the environment from the sif
