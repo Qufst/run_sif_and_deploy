@@ -1,0 +1,47 @@
+name: from-singularity-deploy-papers
+
+on:
+  push:
+    branches: ["main"]
+  repository_dispatch:
+    types: [custom-event] 
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install apptainer
+        run: |
+          sudo apt-get install -y curl rpm2cpio cpio
+          curl -s https://raw.githubusercontent.com/apptainer/apptainer/main/tools/install-unprivileged.sh | bash -s - install-dir
+
+      
+      - name: Restore artifact
+        uses: actions/download-artifact@v3
+        with: 
+          name: apptainer-image
+          path: https://github.com/Qufst/create_apptainer.sif/actions/runs/9659311201/artifacts/1635092654
+
+
+      - name: activate the environment from the sif
+        run: |
+          install-dir/bin/apptainer run image.sif
+        
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Install Computo extension for Quarto
+        run: |
+          quarto add --no-prompt computorg/computo-quarto-extension
+
+      - name: Render
+        run: |
+          quarto publish index.qmd
+        
