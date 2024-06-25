@@ -23,10 +23,9 @@ jobs:
       
       - name: Restore artifact
         run: |
-          gh run download 9659311201 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9663620116 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
 
       - name: activate the environment from the sif
         run: |
