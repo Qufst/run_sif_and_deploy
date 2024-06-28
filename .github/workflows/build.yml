@@ -21,13 +21,13 @@ jobs:
 
       - name: Restore artifact
         run: |
-          gh run download 9712796787 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9713239535 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: activate the environment from the sif
         run: |
-          install-dir/bin/apptainer run image.sif
+          apptainer run image.sif
         
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
