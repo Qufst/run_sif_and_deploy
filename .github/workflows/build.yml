@@ -15,15 +15,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install apptainer
-        run: |
-          sudo apt-get install -y curl rpm2cpio cpio
-          curl -s https://raw.githubusercontent.com/apptainer/apptainer/main/tools/install-unprivileged.sh | bash -s - install-dir
+      - uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.3.2
 
-      
       - name: Restore artifact
         run: |
-          gh run download 9663829656 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9712796787 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
