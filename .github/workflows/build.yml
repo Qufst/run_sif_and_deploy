@@ -40,5 +40,7 @@ jobs:
 
       - name: Render
         run: |
+          mamba init
+          mamba activate myenv
           quarto render index.qmd
         
