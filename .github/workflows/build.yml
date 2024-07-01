@@ -25,6 +25,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
       - name: Activate Conda environment and run commands
         run: |
           apptainer exec image.sif bash <<EOF
@@ -33,9 +34,6 @@ jobs:
           mamba activate myenv
           exec "$@"
           EOF
-        shell: bash
-        env:
-          PATH: ${{ runner.path }}
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
