@@ -48,7 +48,6 @@ jobs:
       - name: Render
         run: |
           mamba init
-          source ~/.bashrc
           mamba activate myenv
           quarto render index.qmd
         
