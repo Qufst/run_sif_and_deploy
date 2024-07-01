@@ -35,13 +35,6 @@ jobs:
         run: |
           apptainer run image.sif
 
-      - name: rest
-        run: |
-          exec bash
-          mamba init
-          source ~/.bashrc
-          mamba activate myenv
-
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -54,5 +47,9 @@ jobs:
 
       - name: Render
         run: |
+          exec bash
+          mamba init
+          source ~/.bashrc
+          mamba activate myenv
           quarto render index.qmd
         
