@@ -34,7 +34,7 @@ jobs:
           apk update && apk add --no-cache \
             wget
           wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
-          mkdir opt
+          mkdir ~/opt
           tar -C ~/opt -xvzf quarto-1.5.52-linux-amd64.tar.gz
           rm quarto-linux.tar.gz
           mkdir ~/.local/bin
