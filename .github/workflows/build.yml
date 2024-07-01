@@ -29,7 +29,7 @@ jobs:
         run: |
           ls -la
           QMD_FILE_PATH="index.qmd"
-          WORK_DIR="/workspace"
+          WORK_DIR="/tmp/workspace"
           apptainer exec image.sif bash <<EOF
           apk update && apk add --no-cache \
             wget
@@ -42,11 +42,12 @@ jobs:
           ( echo ""; echo 'export PATH=$PATH:~/.local/bin\n' ; echo "" ) >> ~/.profile
           source ~/.profile
           quarto check
+          mamba env list
 
           EOF
             # Copier le fichier QMD dans le répertoire de travail de l'image
             mkdir -p $WORK_DIR
-            cp index.qmd /workspace/mon_document.qmd
+            cp index.qmd /tmp/workspace/mon_document.qmd
 
             # Rendre le document QMD
             apptainer exec --bind $(dirname $QMD_FILE_PATH):$WORK_DIR $IMAGE_PATH quarto render $WORK_DIR/mon_document.qmd
