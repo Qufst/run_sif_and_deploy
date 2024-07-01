@@ -31,6 +31,7 @@ jobs:
           apptainer exec image.sif bash <<EOF
           # Activer l'environnement Conda et exécuter des commandes
           mamba init
+          source ~/.bashrc
           mamba activate myenv
           EOF
 
