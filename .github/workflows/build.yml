@@ -25,35 +25,18 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: activate the environment from the sif
+      - name: Activate Conda environment and run commands
         run: |
-          ls -la
-          QMD_FILE_PATH="index.qmd"
-          WORK_DIR="/tmp/workspace"
           apptainer exec image.sif bash <<EOF
-          apk update && apk add --no-cache \
-            wget
-          wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
-          mkdir ~/opt
-          tar -C ~/opt -xvzf quarto-1.5.52-linux-amd64.tar.gz
-          rm quarto-1.5.52-linux-amd64.tar.gz
-          mkdir ~/.local/bin
-          ln -s ~/opt/quarto-1.5.52/bin/quarto ~/.local/bin/quarto
-          ( echo ""; echo 'export PATH=$PATH:~/.local/bin\n' ; echo "" ) >> ~/.profile
-          source ~/.profile
-          quarto check
-          mamba env list
-
+          # Activer l'environnement Conda et exécuter des commandes
+          mamba init
+          mamba activate myenv
+          exec "$@"
           EOF
-            # Copier le fichier QMD dans le répertoire de travail de l'image
-            mkdir -p $WORK_DIR
-            cp index.qmd /tmp/workspace/mon_document.qmd
-
-            # Rendre le document QMD
-            apptainer exec --bind $(dirname $QMD_FILE_PATH):$WORK_DIR $IMAGE_PATH quarto render $WORK_DIR/mon_document.qmd
-
-            chmod +x render_qmd.sh
-            ./render_qmd.sh
+        shell: bash
+        working-directory: /path/to/working/directory
+        env:
+          PATH: ${{ runner.path }}
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
