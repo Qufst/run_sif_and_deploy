@@ -25,6 +25,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: inspecter l'image
+        run: |
+          apptainer inspect image.sif
+          apptainer exec image.sif ls /
+
+
       - name: activate the environment from the sif
         run: |
           apptainer run image.sif
