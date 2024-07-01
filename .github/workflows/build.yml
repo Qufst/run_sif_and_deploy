@@ -33,7 +33,7 @@ jobs:
           apptainer exec image.sif bash <<EOF
           apk update && apk add --no-cache \
             wget
-          wget https://quarto.org/docs/download/quarto-1.5.52-linux-amd64.tar.gz
+          wget https://quarto.org/docs/download/tarball.html?version=1.5.52&idPrefix=download-pre
           tar -xzf quarto-1.5.52-linux-amd64.tar.gz
           rm quarto-1.5.52-linux-amd64.tar.gz
           EOF
