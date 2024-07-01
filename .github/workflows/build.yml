@@ -54,6 +54,5 @@ jobs:
 
       - name: Render
         run: |
-          source .bashrc 
           quarto render index.qmd
         
