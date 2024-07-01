@@ -45,12 +45,10 @@ jobs:
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
 
-      - name: prerender
+      - name: Render
         run: |
           conda init
           source /home/runner/.bashrc
-      - name: Render
-        run: |
           conda activate myenv
           quarto render index.qmd
         
