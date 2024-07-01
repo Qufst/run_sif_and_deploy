@@ -30,8 +30,10 @@ jobs:
         run: |
           apptainer exec image.sif bash <<EOF
           # Activer l'environnement Conda et exécuter des commandes
-          source /home/runner/.bashrc
+          kill -9 $$
+          sleep 1
           mamba init
+          source /home/runner/.bashrc
           mamba activate myenv
           EOF
 
