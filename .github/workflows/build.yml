@@ -32,7 +32,6 @@ jobs:
           # Activer l'environnement Conda et exécuter des commandes
           mamba init
           mamba activate myenv
-          exec "$@"
           EOF
 
       - name: Set up Quarto
