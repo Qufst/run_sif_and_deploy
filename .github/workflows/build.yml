@@ -33,11 +33,13 @@ jobs:
           apptainer exec image.sif bash <<EOF
           apk update && apk add --no-cache \
             wget
-          wget https://quarto.org/docs/download/tarball.html?version=1.5.52&idPrefix=download-pre
+          wget https://quarto.org/download/latest/quarto-linux.tar.gz
+          tar -xzf quarto-linux.tar.gz -C /usr/local/bin/
+          rm quarto-linux.tar.gz
 
           EOF
             # Copier le fichier QMD dans le répertoire de travail de l'image
-            apptainer copy image.sif $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
+            cp $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
 
             # Rendre le document QMD
             apptainer exec --bind $(dirname $QMD_FILE_PATH):$WORK_DIR $IMAGE_PATH quarto render $WORK_DIR/mon_document.qmd
