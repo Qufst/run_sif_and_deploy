@@ -48,10 +48,9 @@ jobs:
       - name: prerender
         run: |
           conda init
-          exec /usr/bin/bash
+          source /home/runner/.bashrc
       - name: Render
         run: |
-          conda init
           conda activate myenv
           quarto render index.qmd
         
