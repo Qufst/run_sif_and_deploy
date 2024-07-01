@@ -31,8 +31,7 @@ jobs:
 
       - name: rest
         run: |
-          kill -9 $$
-          sleep 1
+          exec bash
           mamba init
           source ~/.bashrc
           mamba activate myenv
