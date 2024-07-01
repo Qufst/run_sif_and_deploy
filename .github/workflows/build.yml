@@ -28,6 +28,9 @@ jobs:
       - name: activate the environment from the sif
         run: |
           apptainer run image.sif
+
+      - name: rest
+        run: |
           kill -9 $$
           sleep 1
           mamba init
