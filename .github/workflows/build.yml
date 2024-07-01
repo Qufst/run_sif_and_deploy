@@ -34,7 +34,6 @@ jobs:
           exec "$@"
           EOF
         shell: bash
-        working-directory: /path/to/working/directory
         env:
           PATH: ${{ runner.path }}
 
