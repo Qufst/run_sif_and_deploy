@@ -45,7 +45,8 @@ jobs:
 
           EOF
             # Copier le fichier QMD dans le répertoire de travail de l'image
-            cp $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
+            mkdir -p $WORK_DIR
+            cp index.qmd /workspace/mon_document.qmd
 
             # Rendre le document QMD
             apptainer exec --bind $(dirname $QMD_FILE_PATH):$WORK_DIR $IMAGE_PATH quarto render $WORK_DIR/mon_document.qmd
