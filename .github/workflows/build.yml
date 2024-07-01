@@ -48,6 +48,7 @@ jobs:
       - name: prerender
         run: |
           conda init
+          exec /usr/bin/bash
       - name: Render
         run: |
           conda activate myenv
