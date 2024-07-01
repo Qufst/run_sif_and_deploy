@@ -21,21 +21,19 @@ jobs:
 
       - name: Restore artifact
         run: |
-          gh run download 9739705176 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9713729700 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - name: Activate Conda environment and run commands
+      - name: activate the environment from the sif
         run: |
-          apptainer exec image.sif bash <<EOF
-          # Activer l'environnement Conda et exécuter des commandes
+          apptainer run image.sif
           kill -9 $$
           sleep 1
           mamba init
-          source /home/runner/.bashrc
+          source ~/.bashrc
           mamba activate myenv
-          EOF
+
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -48,5 +46,6 @@ jobs:
 
       - name: Render
         run: |
+          source .bashrc 
           quarto render index.qmd
         
