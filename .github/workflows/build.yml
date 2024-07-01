@@ -51,6 +51,7 @@ jobs:
           exec /usr/bin/bash
       - name: Render
         run: |
+          conda init
           conda activate myenv
           quarto render index.qmd
         
