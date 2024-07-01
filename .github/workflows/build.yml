@@ -33,10 +33,9 @@ jobs:
           apptainer exec image.sif bash <<EOF
           apk update && apk add --no-cache \
             wget
-          wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.0/quarto-1.2.0-linux-amd64.deb
-          dpkg -i quarto-1.2.0-linux-amd64.deb
-          apk add --allow-untrusted quarto-1.2.0-linux-amd64.deb
-          rm -rf /var/lib/apt/lists/* quarto-1.2.0-linux-amd64.deb
+          wget https://quarto.org/docs/download/quarto-1.5.52-linux-amd64.tar.gz
+          tar -xzf quarto-1.5.52-linux-amd64.tar.gz
+          rm quarto-1.5.52-linux-amd64.tar.gz
           EOF
             # Copier le fichier QMD dans le répertoire de travail de l'image
             apptainer copy image.sif $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
