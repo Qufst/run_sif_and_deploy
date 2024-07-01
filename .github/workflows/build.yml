@@ -36,7 +36,7 @@ jobs:
           wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
           mkdir ~/opt
           tar -C ~/opt -xvzf quarto-1.5.52-linux-amd64.tar.gz
-          rm quarto-linux.tar.gz
+          rm quarto-1.5.52-linux-amd64.tar.gz
           mkdir ~/.local/bin
           ln -s ~/opt/quarto-1.5.52/bin/quarto ~/.local/bin/quarto
           ( echo ""; echo 'export PATH=$PATH:~/.local/bin\n' ; echo "" ) >> ~/.profile
