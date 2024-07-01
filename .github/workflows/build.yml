@@ -34,8 +34,7 @@ jobs:
           apk update && apk add --no-cache \
             wget
           wget https://quarto.org/docs/download/tarball.html?version=1.5.52&idPrefix=download-pre
-          tar -xzf quarto-1.5.52-linux-amd64.tar.gz
-          rm quarto-1.5.52-linux-amd64.tar.gz
+
           EOF
             # Copier le fichier QMD dans le répertoire de travail de l'image
             apptainer copy image.sif $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
