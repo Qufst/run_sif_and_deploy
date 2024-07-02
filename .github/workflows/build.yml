@@ -25,15 +25,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: inspecter l'image
-        run: |
-          apptainer inspect image.sif
-          apptainer exec image.sif ls /
-
-
-      - name: activate the environment from the sif
-        run: |
-          apptainer run image.sif
 
 
       - name: Set up Quarto
@@ -45,10 +36,16 @@ jobs:
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
 
+      - name: activate the environment from the sif
+        run: |
+          apptainer exec image.sif mamba init
+          apptainer exec image.sif bash -c 'source ~/.bashrc && mamba activate myenv && quarto render index.qmd'
+
       - name: Render
         run: |
           conda init
           source /home/runner/.bashrc
+          conda info --envs
           conda shell.bash activate myenv
           quarto render index.qmd
         
