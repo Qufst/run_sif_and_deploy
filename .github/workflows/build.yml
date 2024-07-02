@@ -12,7 +12,7 @@ jobs:
     name: Download Singularity Image
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{steps.art.outputs.image.sif}}
+      output1: ${{steps.art.outputs}}
 
     steps:
       - name: Checkout code
@@ -26,7 +26,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: echo
-        run: echo "${{steps.art.outputs.image.sif}}"
+        run: echo "${{steps.art.outputs}}"
 
   render-quarto-document:
     name: Render Quarto Document
