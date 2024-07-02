@@ -33,8 +33,10 @@ jobs:
             apk add --no-cache tar wget
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
             ls -la
+            chmod +x quarto-1.5.52-linux-amd64.tar.gz
             tar -xzf quarto-1.5.52-linux-amd64.tar.gz -C $HOME
-            ls -la $HOME
+
+            ls -la quarto-1.5.52
             ln -s $HOME/quarto-1.5.52/bin/quarto $HOME/.local/bin/quarto
             export PATH=$HOME/.local/bin:$PATH
 
