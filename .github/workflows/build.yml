@@ -21,7 +21,7 @@ jobs:
 
       - name: Restore artifact
         run: |
-          gh run download 9713729700 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9756524638 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -36,16 +36,8 @@ jobs:
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
 
-      - name: activate the environment from the sif
+      - name: render
         run: |
-          apptainer exec image.sif mamba init
-          apptainer exec image.sif bash -c 'source ~/.bashrc && mamba activate myenv && quarto render index.qmd'
+          apptainer exec image.sif bash -c 'quarto render index.qmd'
 
-      - name: Render
-        run: |
-          conda init
-          source /home/runner/.bashrc
-          conda info --envs
-          conda shell.bash activate myenv
-          quarto render index.qmd
         
