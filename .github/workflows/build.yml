@@ -47,4 +47,5 @@ jobs:
 
       - name: Render Quarto document
         run: |
+          echo "${{needs.download-singularity-image.outputs.output1}}"
           quarto render index.qmd
