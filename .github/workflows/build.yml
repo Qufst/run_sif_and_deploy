@@ -30,9 +30,10 @@ jobs:
         run: |
           apptainer exec image.sif bash -c '
             # Install Quarto
+            mkdir -p $HOME/.local/bin
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
-            tar -xzf quarto-1.5.52-linux-amd64.tar.gz -C /opt
-            ln -s /opt/quarto-1.5.52/bin/quarto /usr/local/bin/quarto
+            tar -xzf quarto-1.5.52-linux-amd64.tar.gz -C $HOME/.local
+            ln -s $HOME/.local/quarto-1.5.52/bin/quarto $HOME/.local/bin/quarto
 
             quarto add --no-prompt computorg/computo-quarto-extension
 
