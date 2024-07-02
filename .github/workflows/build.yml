@@ -11,14 +11,17 @@ jobs:
   download-singularity-image:
     name: Download Singularity Image
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{steps.art.outputs.image.sif}}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Download Singularity image artifact
+        id: art
         run: |
-          gh run download 9756524638 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9756524638 --repo Qufst/create_apptainer.sif --name apptainer-image >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -27,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: download-singularity-image
     container:
-      image: image.sif
+      image: ${{needs.download-singularity-image.outputs.output1}}
 
     steps:
       - name: Checkout code
