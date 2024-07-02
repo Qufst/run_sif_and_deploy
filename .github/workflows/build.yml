@@ -28,9 +28,8 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer exec image.sif '
-            source /opt/conda/etc/profile.d/conda.sh
-            mamba activate myenv'
+          CONDA_SH=$(apptainer exec ./singularity-image/apptainer-image bash -c 'find / -name conda.sh 2>/dev/null | head -n 1')
+          apptainer exec ./singularity-image/apptainer-image bash -c "source $CONDA_SH && mamba activate myenv && quarto render index.qmd"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
