@@ -11,33 +11,24 @@ jobs:
   download-singularity-image:
     name: Download Singularity Image
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{steps.art.outputs}}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.3.2
+
       - name: Download Singularity image artifact
-        id: art
         run: |
-          gh run download 9756524638 --repo Qufst/create_apptainer.sif --name apptainer-image >> $GITHUB_OUTPUT
+          gh run download 9756524638 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: echo
-        run: echo "${{steps.art.outputs}}"
-
-  render-quarto-document:
-    name: Render Quarto Document
-    runs-on: ubuntu-latest
-    needs: download-singularity-image
-    container:
-      image: ${{needs.download-singularity-image.outputs.output1}}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: run .sif
+        run: |
+          apptainer run image.sif
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -50,5 +41,4 @@ jobs:
 
       - name: Render Quarto document
         run: |
-          echo "${{needs.download-singularity-image.outputs.output1}}"
           quarto render index.qmd
