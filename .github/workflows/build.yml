@@ -11,6 +11,8 @@ jobs:
   release:
     name: Create Release
     runs-on: ubuntu-latest
+    container:
+      image: image.sif
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,6 +38,6 @@ jobs:
 
       - name: render
         run: |
-          apptainer exec image.sif bash -c 'quarto render index.qmd'
+          quarto render index.qmd
 
         
