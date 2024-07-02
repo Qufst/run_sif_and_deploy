@@ -32,8 +32,11 @@ jobs:
             # Install Quarto
             apk add --no-cache tar wget
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
-            tar -xzf quarto-1.5.52-linux-amd64.tar.gz
-            ln -s quarto-1.5.52/bin/quarto
+            ls -la
+            tar -xzf quarto-1.5.52-linux-amd64.tar.gz -C $HOME
+            ls -la $HOME
+            ln -s $HOME/quarto-1.5.52/bin/quarto $HOME/.local/bin/quarto
+            export PATH=$HOME/.local/bin:$PATH
 
             quarto add --no-prompt computorg/computo-quarto-extension
 
