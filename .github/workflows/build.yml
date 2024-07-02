@@ -28,7 +28,8 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer run image.sif
+          apptainer exec image.sif "source /opt/conda/etc/profile.d/mamba.sh"
+          apptainer exec image.sif "mamba activate myenv"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
