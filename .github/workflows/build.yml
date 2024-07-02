@@ -29,8 +29,8 @@ jobs:
       - name: run .sif
         run: |
           CONDA_SH=$(apptainer exec image.sif bash -c 'find / -name conda.sh 2>/dev/null | head -n 1')
-          apptainer exec image.sif bash -c "mamba init"
-          apptainer exec image.sif bash -c "source $CONDA_SH"
+          apptainer exec image.sif bash -c "mamba init --system"
+          apptainer exec image.sif bash -c "source /opt/conda/etc/profile.d/conda.sh"
           apptainer exec image.sif bash -c "mamba activate CONDA_DEFAULT_ENV"
 
       - name: Set up Quarto
