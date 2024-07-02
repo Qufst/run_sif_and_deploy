@@ -31,8 +31,9 @@ jobs:
           apptainer exec image.sif bash -c '
             # Install Quarto
             apk add --no-cache tar wget
-            wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz && tar -xzf quarto-1.5.52-linux-amd64.tar.gz
-
+            wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.52/quarto-1.5.52-linux-amd64.tar.gz
+            tar -xzf quarto-1.5.52-linux-amd64.tar.gz
+            ls -la
             quarto add --no-prompt computorg/computo-quarto-extension
 
             # Render the Quarto document
