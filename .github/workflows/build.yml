@@ -22,7 +22,7 @@ jobs:
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 9761084223 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9762135815 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
