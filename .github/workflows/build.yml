@@ -28,8 +28,7 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer run image.sif mamba env export --no-build > environment.yml
-
+          apptainer run image.sif
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
