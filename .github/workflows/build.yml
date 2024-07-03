@@ -37,8 +37,12 @@ jobs:
             # Exécuter le script copié
             apptainer exec image.sif bash -c "/tmp/mamba.sh"
                     
+            # Initialiser mamba
+            apptainer exec image.sif bash -c "mamba init"
+                    
             # Activer l'environnement Conda myenv
-            apptainer exec image.sif bash -c "mamba activate myenv"
+            apptainer exec image.sif bash -c "source ~/.bashrc && mamba activate myenv"
+                    
                     
 
       - name: Set up Quarto
