@@ -28,7 +28,7 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer run env/ mamba env export --no-build > environment.yml
+          apptainer run image.sif mamba env export --no-build > environment.yml
 
 
       - name: Set up Quarto
