@@ -29,6 +29,8 @@ jobs:
       - name: run .sif
         run: |
           apptainer run image.sif
+          apptainer exec image.sif chmod +x environment.sh
+
           apptainer exec image.sif . /environment.sh
 
       - name: Set up Quarto
