@@ -28,7 +28,7 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer exec image.sif -h
+          apptainer build image.sif 
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
