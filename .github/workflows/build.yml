@@ -28,8 +28,7 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer exec image.sif bash -c 'find / -name source'
-          ls -la /opt/conda/etc/profile.d/mamba.sh
+          ls -la /opt/conda/etc/profile.d/
           apptainer exec image.sif bash -c "/opt/conda/etc/profile.d/mamba.sh"
           apptainer exec image.sif "mamba activate myenv"
 
