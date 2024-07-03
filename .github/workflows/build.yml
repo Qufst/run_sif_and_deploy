@@ -30,20 +30,20 @@ jobs:
         run: |
             # Copier le script mamba.sh vers un emplacement accessible en écriture
             apptainer exec image.sif cp /opt/conda/etc/profile.d/mamba.sh /tmp/mamba.sh
-                    
+
             # Ajouter les permissions d'exécution au script copié
             apptainer exec image.sif chmod +x /tmp/mamba.sh
-                    
+
             # Exécuter le script copié
             apptainer exec image.sif bash -c "/tmp/mamba.sh"
-                    
+
             # Initialiser mamba
-            apptainer exec image.sif bash -c "mamba init"
-                    
+            apptainer exec image.sif bash -c "mamba init --system"
+
             # Activer l'environnement Conda myenv
-            apptainer exec image.sif bash -c "source ~/.bashrc && mamba activate myenv"
-                    
-                    
+            apptainer exec image.sif bash -c "mamba activate myenv"
+
+
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
