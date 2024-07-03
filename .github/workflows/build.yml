@@ -31,19 +31,20 @@ jobs:
           dd if=/dev/zero of=overlay.img bs=1M count=1024
           mkfs.ext3 overlay.img
           # Copier le script mamba.sh vers un emplacement accessible en écriture
-          apptainer exec --overlay overlay.img image.sif cp /opt/conda/etc/profile.d/mamba.sh /tmp/mamba.sh
+          apptainer exec --overlay overlay.img:rw --fakeroot image.sif cp /opt/conda/etc/profile.d/mamba.sh /tmp/mamba.sh
                   
           # Ajouter les permissions d'exécution au script copié
-          apptainer exec --overlay overlay.img image.sif chmod +x /tmp/mamba.sh
+          apptainer exec --overlay overlay.img:rw --fakeroot image.sif chmod +x /tmp/mamba.sh
                   
           # Exécuter le script copié
-          apptainer exec --overlay overlay.img image.sif bash -c "/tmp/mamba.sh"
+          apptainer exec --overlay overlay.img:rw --fakeroot image.sif bash -c "/tmp/mamba.sh"
                   
           # Initialiser mamba
-          apptainer exec --overlay overlay.img image.sif bash -c "mamba init --system"
+          apptainer exec --overlay overlay.img:rw --fakeroot image.sif bash -c "mamba init --system"
                   
           # Activer l'environnement Conda myenv
-          apptainer exec --overlay overlay.img image.sif bash -c "source ~/.bashrc && mamba activate myenv"
+          apptainer exec --overlay overlay.img:rw --fakeroot image.sif bash -c "source ~/.bashrc && mamba activate myenv"
+
 
 
       - name: Set up Quarto
