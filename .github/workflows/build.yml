@@ -29,7 +29,7 @@ jobs:
       - name: run .sif
         run: |
           apptainer run image.sif
-          apptainer exec image.sif find -name mamba
+          apptainer exec image.sif find -name / mamba
 
 
       - name: Set up Quarto
