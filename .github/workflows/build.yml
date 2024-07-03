@@ -28,9 +28,8 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer exec image.sif bash /environment.sh
-
-
+          apptainer run image.sif
+          apptainer exec image.sif /environment.sh
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
