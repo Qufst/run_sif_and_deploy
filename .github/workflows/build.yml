@@ -28,8 +28,7 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer run image.sif 
-          conda activate myenv
+          apptainer exec image.sif "conda info --envs"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
