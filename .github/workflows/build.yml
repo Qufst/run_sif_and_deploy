@@ -32,7 +32,8 @@ jobs:
           apptainer exec image.sif micromamba env list
           apptainer exec image.sif ls -la /opt/conda/envs/myenv
           apptainer exec image.sif micromamba list myenv
-          apptainer exec image.sif python
+          apptainer exec image.sif python --version
+          apptainer exec image.sif micromamba --version
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
