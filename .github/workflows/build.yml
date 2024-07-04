@@ -22,14 +22,14 @@ jobs:
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 9778573054 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 9790177558 --repo Qufst/create_apptainer.sif --name apptainer-image
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: run .sif
         run: |
-          apptainer run image.sif
-          apptainer exec image.sif find -name / conda
+          apptainer exec image.sif bash -c "eval \$(micromamba shell hook -s posix) && micromamba activate myenv && micromamba env list"
+
 
 
       - name: Set up Quarto
