@@ -32,4 +32,4 @@ jobs:
           apptainer exec image.sif micromamba env list
       - name: Run container and install Quarto
         run: |
-          apptainer exec --writable image.sif bash -c "wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.53/quarto-1.5.53-linux-amd64.tar.gz && mkdir ~/opt && tar -C ~/opt -xvzf quarto-1.5.53-linux-amd64.tar.gz && mkdir ~/.local/bin && ln -s ~/opt/quarto-1.5.53/bin/quarto ~/.local/bin/quarto &&  /home/runner/opt/quarto-1.5.53/bin/quarto add --no-prompt computorg/computo-quarto-extension &&  /home/runner/opt/quarto-1.5.53/bin/quarto render index.qmd"
+          apptainer exec image.sif bash -c "wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.1/quarto-1.6.1.tar.gz && mkdir ~/opt && tar -C ~/opt -xvzf quarto-1.6.1.tar.gz && mkdir ~/.local/bin && ln -s ~/opt/quarto-1.6.1/bin/quarto ~/.local/bin/quarto &&  /home/runner/opt/quarto-1.6.1/bin/quarto add --no-prompt computorg/computo-quarto-extension &&  /home/runner/opt/quarto-1.6.1/bin/quarto render index.qmd"
