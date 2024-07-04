@@ -30,7 +30,8 @@ jobs:
         run: |
           apptainer run image.sif
           apptainer exec image.sif micromamba env list
-          apptainer exec python
+          apptainer exec image.sif micromamba env config vars list
+          apptainer exec image.sif python
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
