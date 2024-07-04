@@ -28,8 +28,8 @@ jobs:
 
       - name: run .sif
         run: |
-          apptainer exec image.sif bash -c "eval \$(micromamba shell hook -s posix) && micromamba activate myenv && micromamba env list"
-
+          apptainer run image.sif
+          apptainer exec image.sif micromamba env list
 
 
       - name: Set up Quarto
