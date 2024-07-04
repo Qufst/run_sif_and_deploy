@@ -30,6 +30,7 @@ jobs:
         run: |
           apptainer run image.sif
           apptainer exec image.sif micromamba env list
+          apptainer exec image.sif eval "$(micromamba shell hook --shell )"
           apptainer exec image.sif micromamba activate myenv
           apptainer exec image.sif micromamba --version
 
