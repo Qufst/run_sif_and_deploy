@@ -30,6 +30,17 @@ jobs:
         run: |
           apptainer run image.sif
           apptainer exec image.sif micromamba env list
-      - name: Run container and install Quarto
+          apptainer exec python
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Install Computo extension for Quarto
         run: |
-          apptainer exec image.sif bash -c "wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.1/quarto-1.6.1.tar.gz && mkdir ~/opt && tar -C ~/opt -xvzf quarto-1.6.1.tar.gz && /home/runner/opt/configure.sh && /home/runner/opt/ add --no-prompt computorg/computo-quarto-extension &&  /home/runner/opt/ render index.qmd"
+          quarto add --no-prompt computorg/computo-quarto-extension
+      - name: Render Quarto document
+        run: |
+          quarto render index.qmd
+
