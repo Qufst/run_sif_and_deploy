@@ -33,16 +33,16 @@ jobs:
 
       - name: Run container and install Quarto
         run: |
-          apptainer exec image.sif bash -c "wget https://quarto.org/download/latest/quarto-linux-amd64.deb && dpkg -i quarto-linux-amd64.deb && chmod +x quarto-linux-amd64.deb && ./quarto-linux-amd64.deb"
+          apptainer exec image.sif bash -c "wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.53/quarto-1.5.53-linux-amd64.tar.gz && mkdir ~/opt && tar -C ~/opt -xvzf quarto-1.5.53-linux-amd64.tar.gz && mkdir ~/.local/bin && ln -s ~/opt/quarto-1.5.53/bin/quarto ~/.local/bin/quarto"
   
       - name: Install TinyTeX
         run: |
-          apptainer exec image.sif bash -c "quarto install tool tinytex --log-level warning"
+          apptainer exec image.sif bash -c "~/.local/bin/quarto install tool tinytex --log-level warning"
   
       - name: Install Quarto Extension
         run: |
-          apptainer exec image.sif bash -c "quarto add --no-prompt computorg/computo-quarto-extension"
+          apptainer exec image.sif bash -c "~/.local/bin/quarto add --no-prompt computorg/computo-quarto-extension"
   
       - name: Render Quarto document
         run: |
-          apptainer exec image.sif bash -c "quarto render index.qmd"
+          apptainer exec image.sif bash -c "~/.local/bin/quarto render index.qmd"
