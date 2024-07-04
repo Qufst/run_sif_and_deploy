@@ -31,16 +31,18 @@ jobs:
           apptainer run image.sif
           apptainer exec image.sif micromamba env list
 
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
-
-      - name: Install Computo extension for Quarto
+      - name: Run container and install Quarto
         run: |
-          quarto add --no-prompt computorg/computo-quarto-extension
-
+          apptainer exec image.sif bash -c "wget https://quarto.org/download/latest/quarto-linux-amd64.deb && \ apk add --no-cache dpkg && \ dpkg -i quarto-linux-amd64.deb"
+  
+      - name: Install TinyTeX
+        run: |
+          apptainer exec image.sif bash -c "quarto install tool tinytex --log-level warning"
+  
+      - name: Install Quarto Extension
+        run: |
+          apptainer exec image.sif bash -c "quarto add --no-prompt computorg/computo-quarto-extension"
+  
       - name: Render Quarto document
         run: |
-          quarto render index.qmd
+          apptainer exec image.sif bash -c "quarto render index.qmd"
