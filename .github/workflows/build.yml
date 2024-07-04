@@ -33,7 +33,7 @@ jobs:
 
       - name: Run container and install Quarto
         run: |
-          apptainer exec image.sif bash -c "curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && sudo apt-get install ./quarto-linux-amd64.deb"
+          apptainer exec image.sif bash -c "wget https://quarto.org/download/latest/quarto-linux-amd64.deb && sudo apt-get install ./quarto-linux-amd64.deb"
   
       - name: Install TinyTeX
         run: |
