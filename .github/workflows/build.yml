@@ -43,7 +43,9 @@ jobs:
           mkdir -p $WORK_DIR
           QMD_FILE_PATH="index.qmd"
           cp $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
-          QUARTO_DIR=$(dirname $(which quarto))
+
+          QUARTO_BIN=$(which quarto)
+          QUARTO_DIR=$(dirname $QUARTO_BIN)
           apptainer exec --bind $WORK_DIR:/workspace --bind $QUARTO_DIR:$QUARTO_DIR image.sif bash -c "export PATH=$QUARTO_DIR:\$PATH && quarto add --no-prompt computorg/computo-quarto-extension && quarto render /workspace/mon_document.qmd"
 
 
