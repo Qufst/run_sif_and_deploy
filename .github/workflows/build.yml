@@ -16,13 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: chmod
-        run: chmod +x apptainer-scripts/python
-
-      - name: export
-        run: 
-          export QUARTO_PYTHON=apptainer-scripts/python
-
       - uses: eWaterCycle/setup-apptainer@v2
         with:
           apptainer-version: 1.3.2
@@ -43,6 +36,7 @@ jobs:
 
       - name: Copy and render QMD file with Quarto
         run: |
+          export QUARTO_PYTHON="apptainer exec image.sif /opt/conda/envs/myenv/bin/python"
           quarto render index.qmd
 
 
