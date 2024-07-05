@@ -45,7 +45,8 @@ jobs:
       - name: Copy and render QMD file with Quarto
         run: |
           source $GITHUB_ENV
-          apptainer exec image.sif --bind $(pwd)/workspace:/workspace --bind /opt/quarto:/opt/quarto bash -c "/opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension && /opt/quarto/bin/quarto render /workspace/mon_document.qmd"
-
+          apptainer exec image.sif bash -c "/opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension && /opt/quarto/bin/quarto render /workspace/mon_document.qmd"
+        env:
+          QUARTO_BIN: /opt/quarto/bin/quarto
 
 
