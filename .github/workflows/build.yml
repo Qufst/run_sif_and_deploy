@@ -33,22 +33,21 @@ jobs:
 
       - name: activate the environment from the sif
         run: |
-          ls -la
-          QMD_FILE_PATH="index.qmd"
+          apptainer exec apptainer-image.sif bash -c "
+            apk update && apk add --no-cache wget &&
+            wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.0/quarto-1.2.0-linux-amd64.deb &&
+            dpkg -i quarto-1.2.0-linux-amd64.deb &&
+            apk add --allow-untrusted quarto-1.2.0-linux-amd64.deb &&
+            rm -rf /var/lib/apt/lists/* quarto-1.2.0-linux-amd64.deb
+          "
+
+      - name: Copy and render QMD file
+        run: |
           WORK_DIR="/workspace"
-          apptainer exec image.sif bash <<EOF
-          apk update && apk add --no-cache \
-            wget
-          wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.0/quarto-1.2.0-linux-amd64.deb
-          dpkg -i quarto-1.2.0-linux-amd64.deb
-          apk add --allow-untrusted quarto-1.2.0-linux-amd64.deb
-          rm -rf /var/lib/apt/lists/* quarto-1.2.0-linux-amd64.deb
-          EOF
-            # Copier le fichier QMD dans le répertoire de travail de l'image
-            apptainer copy image.sif $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
-            quarto add --no-prompt computorg/computo-quarto-extension
-            # Rendre le document QMD
-            apptainer exec --bind $(dirname $QMD_FILE_PATH):$WORK_DIR $IMAGE_PATH quarto render $WORK_DIR/mon_document.qmd
+          QMD_FILE_PATH="index.qmd"
+          cp $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
+          apptainer exec --bind $(pwd):$WORK_DIR apptainer-image.sif quarto add --no-prompt computorg/computo-quarto-extension
+          apptainer exec --bind $(pwd):$WORK_DIR apptainer-image.sif quarto render $WORK_DIR/mon_document.qmd
 
 
 
