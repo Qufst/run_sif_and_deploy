@@ -37,16 +37,19 @@ jobs:
         with:
           tinytex: true
 
+      - name: Find Quarto Paths
+        id: find-quarto
+        run: |
+          echo "QUARTO_BIN=/usr/local/bin/quarto" >> $GITHUB_ENV
+          echo "QUARTO_DIR=/opt/quarto/bin" >> $GITHUB_ENV
+
       - name: Copy and render QMD file
         run: |
-          find / -name quarto
           WORK_DIR=$(pwd)/workspace
           mkdir -p $WORK_DIR
           QMD_FILE_PATH="index.qmd"
           cp $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
-
-          QUARTO_BIN=$(which quarto)
-          QUARTO_DIR=$(dirname $QUARTO_BIN)
-          apptainer exec --bind $WORK_DIR:/workspace --bind $QUARTO_DIR:$QUARTO_DIR image.sif bash -c "export PATH=$QUARTO_DIR:\$PATH && quarto add --no-prompt computorg/computo-quarto-extension && quarto render /workspace/mon_document.qmd"
+          source $GITHUB_ENV
+          apptainer exec --bind $WORK_DIR:/workspace --bind $QUARTO_DIR:$QUARTO_DIR --bind /usr/local/bin:/usr/local/bin image.sif bash -c "export PATH=$QUARTO_DIR:/usr/local/bin:\$PATH && quarto add --no-prompt computorg/computo-quarto-extension && quarto render /workspace/mon_document.qmd"
 
 
