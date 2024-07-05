@@ -46,16 +46,14 @@ jobs:
         id: find-quarto
         run: |
           echo "QUARTO_BIN=/usr/local/bin/quarto" >> $GITHUB_ENV
-          echo "QUARTO_DIR=/opt/quarto/bin" >> $GITHUB_ENV
+          echo "QUARTO_DIR= /opt/quarto/bin/quarto" >> $GITHUB_ENV
 
       - name: Copy and render QMD file with Quarto
         run: |
           source $GITHUB_ENV
-          apptainer exec --bind $(pwd)/workspace:/workspace --bind image.sif:/image.sif --bind $QUARTO_DIR:$QUARTO_DIR --bind /usr/local/bin:/usr/local/bin image.sif bash -c "export PATH=$QUARTO_DIR:/usr/local/bin:\$PATH && quarto add --no-prompt computorg/computo-quarto-extension && quarto render /workspace/mon_document.qmd"
-
+          apptainer exec --bind $QUARTO_DIR:$QUARTO_DIR --bind QUARTO_BIN:QUARTO_BIN image.sif bash -c "quarto add --no-prompt computorg/computo-quarto-extension && quarto render /workspace/mon_document.qmd"
         env:
-          BUNDLE_EXT: linux-amd64.deb
           QUARTO_BIN: /usr/local/bin/quarto
-          QUARTO_DIR: /opt/quarto/bin
+          QUARTO_DIR:  /opt/quarto/bin/quarto
 
 
