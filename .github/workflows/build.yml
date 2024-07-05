@@ -37,14 +37,9 @@ jobs:
         with:
           tinytex: true
 
-      - name: Prepare Workspace and QMD File
-        run: |
-          mkdir -p $(pwd)/workspace
-          cp index.qmd $(pwd)/workspace/mon_document.qmd
-
       - name: Copy and render QMD file with Quarto
         run: |
-          apptainer exec --mount type=bind,src=/opt/quarto,dst=/opt/quarto image.sif bash -c "/opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension && /opt/quarto/bin/quarto render /workspace/mon_document.qmd"
+          apptainer exec --mount type=bind,src=/opt/quarto,dst=/opt/quarto image.sif bash -c "/opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension && /opt/quarto/bin/quarto render index.qmd"
 
 
 
