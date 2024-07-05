@@ -37,6 +37,11 @@ jobs:
         with:
           tinytex: true
 
+      - name: Prepare Workspace and QMD File
+        run: |
+          mkdir -p $(pwd)/workspace
+          cp index.qmd $(pwd)/workspace/mon_document.qmd
+
       - name: Find Quarto Paths
         id: find-quarto
         run: |
