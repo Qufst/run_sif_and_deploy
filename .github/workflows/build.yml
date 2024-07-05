@@ -29,17 +29,22 @@ jobs:
       - name: run .sif
         run: |
           apptainer run image.sif
-          apptainer exec image.sif micromamba env list
-
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
 
+      - name: add computo
+        run: quarto add --no-prompt computorg/computo-quarto-extension
+
       - name: Copy and render QMD file with Quarto
         run: |
-          apptainer exec --mount type=bind,src=/opt/quarto,dst=/opt/quarto image.sif bash -c "/opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension && /opt/quarto/bin/quarto render index.qmd"
+          chmod +x ~/apptainer-scripts/python
+          export QUARTO_PYTHON=~/apptainer-scripts/python
+          quarto render index.qmd
+
+
 
 
 
