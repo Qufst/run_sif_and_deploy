@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy and render QMD file with Quarto
         run: |
-          apptainer run image.sif
+          apptainer exec image.sif which python
           export QUARTO_PYTHON="apptainer exec image.sif /opt/conda/envs/myenv/bin/python"
           quarto render index.qmd
 
