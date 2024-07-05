@@ -39,7 +39,6 @@ jobs:
 
       - name: Prepare Workspace and QMD File
         run: |
-          find / -name quarto
           mkdir -p $(pwd)/workspace
           cp index.qmd $(pwd)/workspace/mon_document.qmd
 
