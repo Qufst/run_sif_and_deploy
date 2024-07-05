@@ -26,10 +26,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: run .sif
-        run: |
-          apptainer run image.sif
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -41,7 +37,7 @@ jobs:
       - name: Copy and render QMD file with Quarto
         run: |
           chmod +x apptainer-scripts/python
-          export QUARTO_PYTHON=~/apptainer-scripts/python
+          export QUARTO_PYTHON=apptainer-scripts/python
           quarto render index.qmd
 
 
