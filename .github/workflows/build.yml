@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy and render QMD file with Quarto
         run: |
-          find apptainer-scripts -name python
+          find / -name python
           chmod +x /apptainer-scripts/python
           export QUARTO_PYTHON=apptainer-scripts/python
           quarto render index.qmd
