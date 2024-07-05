@@ -39,6 +39,7 @@ jobs:
 
       - name: Copy and render QMD file
         run: |
+          find / --name quarto
           WORK_DIR=$(pwd)/workspace
           mkdir -p $WORK_DIR
           QMD_FILE_PATH="index.qmd"
