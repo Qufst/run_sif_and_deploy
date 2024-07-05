@@ -31,16 +31,24 @@ jobs:
           apptainer run image.sif
           apptainer exec image.sif micromamba env list
 
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
-
-      - name: Install Computo extension for Quarto
+      - name: activate the environment from the sif
         run: |
-          quarto add --no-prompt computorg/computo-quarto-extension
-      - name: Render Quarto document
-        run: |
-          quarto render index.qmd
+          ls -la
+          QMD_FILE_PATH="index.qmd"
+          WORK_DIR="/workspace"
+          apptainer exec image.sif bash <<EOF
+          apk update && apk add --no-cache \
+            wget
+          wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.0/quarto-1.2.0-linux-amd64.deb
+          dpkg -i quarto-1.2.0-linux-amd64.deb
+          apk add --allow-untrusted quarto-1.2.0-linux-amd64.deb
+          rm -rf /var/lib/apt/lists/* quarto-1.2.0-linux-amd64.deb
+          EOF
+            # Copier le fichier QMD dans le répertoire de travail de l'image
+            apptainer copy image.sif $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
+            quarto add --no-prompt computorg/computo-quarto-extension
+            # Rendre le document QMD
+            apptainer exec --bind $(dirname $QMD_FILE_PATH):$WORK_DIR $IMAGE_PATH quarto render $WORK_DIR/mon_document.qmd
+
+
 
