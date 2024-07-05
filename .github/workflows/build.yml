@@ -33,7 +33,7 @@ jobs:
 
       - name: activate the environment from the sif
         run: |
-          apptainer exec apptainer-image.sif bash -c "
+          apptainer exec image.sif bash -c "
             apk update && apk add --no-cache wget &&
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.0/quarto-1.2.0-linux-amd64.deb &&
             dpkg -i quarto-1.2.0-linux-amd64.deb &&
@@ -46,8 +46,8 @@ jobs:
           WORK_DIR="/workspace"
           QMD_FILE_PATH="index.qmd"
           cp $QMD_FILE_PATH $WORK_DIR/mon_document.qmd
-          apptainer exec --bind $(pwd):$WORK_DIR apptainer-image.sif quarto add --no-prompt computorg/computo-quarto-extension
-          apptainer exec --bind $(pwd):$WORK_DIR apptainer-image.sif quarto render $WORK_DIR/mon_document.qmd
+          apptainer exec --bind $(pwd):$WORK_DIR image.sif quarto add --no-prompt computorg/computo-quarto-extension
+          apptainer exec --bind $(pwd):$WORK_DIR image.sif quarto render $WORK_DIR/mon_document.qmd
 
 
 
