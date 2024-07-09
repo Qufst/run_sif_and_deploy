@@ -1,5 +1,5 @@
 #!/bin/bash
-apptainer exec image.sif /opt/conda/envs/myenv/bin/python /opt/conda/envs/myenv/bin/jupyter notebook
+apptainer exec image.sif /opt/conda/envs/myenv/bin/python
 
 
 
