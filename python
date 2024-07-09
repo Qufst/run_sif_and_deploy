@@ -1,2 +1,0 @@
-
-apptainer exec image.sif /opt/conda/envs/myenv/bin/python 
