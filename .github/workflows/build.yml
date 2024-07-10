@@ -38,9 +38,8 @@ jobs:
         run: |
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
-          export PATH=$HOME/run_sif_and_deploy/apptainer-scripts:$PATH
+          export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/:$PATH
           which python
           which jupyter
-
           quarto render index.qmd
 
