@@ -1,2 +1,2 @@
 #!/bin/bash
-apptainer exec image.sif $HOME/opt/conda/envs/myenv/bin/jupyter "$@"
+apptainer exec image.sif /opt/conda/envs/myenv/bin/jupyter "$@"
