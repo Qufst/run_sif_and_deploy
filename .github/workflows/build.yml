@@ -42,7 +42,6 @@ jobs:
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts//python
           which python
           which jupyter
-          quarto check
           python jupyter quarto render index.qmd
 
 
