@@ -26,15 +26,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: env
-        run: 
-          chmod +x apptainer-scripts/python
-          chmod +x apptainer-scripts/jupyter
-          export PATH=apptainer-scripts/:$PATH
-          export QUARTO_PYTHON=apptainer-scripts/python
-          which python
-          which jupyter
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -43,8 +34,15 @@ jobs:
       - name: add computo
         run: quarto add --no-prompt computorg/computo-quarto-extension
 
-      - name: Copy and render QMD file with Quarto  b
+      - name: Copy and render QMD file with Quarto
         run: |
+          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
+          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
+          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
+          export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/:$PATH
+          export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts//python
+          which python
+          which jupyter
           quarto render index.qmd
 
 
