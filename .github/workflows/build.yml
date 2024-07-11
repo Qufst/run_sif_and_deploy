@@ -43,6 +43,7 @@ jobs:
           which python
           which jupyter
           python -m ipykernel install --user --name=myenv --display-name "Python (myenv)"
+          ls -la /home/runner/.local/share/jupyter/kernels/myenv
           quarto render index.qmd
 
 
