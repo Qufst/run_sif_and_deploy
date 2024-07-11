@@ -35,7 +35,8 @@ jobs:
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
           which quarto
-          
+          ls -la /usr/local/bin/quarto
+
 
       - name: Copy and render QMD file with Quarto
         run: |
