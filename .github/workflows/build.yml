@@ -42,6 +42,7 @@ jobs:
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts//python
           which python
           which jupyter
-          python jupyter quarto render index.qmd
+          python -m ipykernel install --user --name=myenv --display-name "Python (myenv)"
+          quarto render index.qmd
 
 
