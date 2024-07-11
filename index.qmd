@@ -41,7 +41,7 @@ published: false # will be set to true once accepted
 format:
   computo-html: default
   computo-pdf: default
-jupyter: apptainer-scripts/jupyter
+jupyter: python
 ---
 
 # Introduction
