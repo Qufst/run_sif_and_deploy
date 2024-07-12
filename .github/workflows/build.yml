@@ -46,8 +46,8 @@ jobs:
           export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/:$PATH
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts//python
           sudo ln -s /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter /opt/quarto/share/jupyter
-          ls -l /opt/quarto/share/jupyter 
           sudo ln -s /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter.py /opt/quarto/share/jupyter.py
+          ls -l /opt/quarto/share/jupyter 
           cat /opt/quarto/share/jupyter/jupyter.py
           
 
