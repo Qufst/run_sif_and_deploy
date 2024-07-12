@@ -3,19 +3,18 @@ import sys
 import re
 import json
 import stat
+import pprint
+import uuid
+import signal
 import subprocess
-import asyncio
 from socketserver import TCPServer, StreamRequestHandler
-
-# Ajoutez ce chemin vers nbformat
-sys.path.append("/home/qfestor/micromamba/envs/myenv/lib/python3.10/site-packages")
-
 try:
     from socketserver import UnixStreamServer
-except ImportError:
+except:
     pass
 from log import log_init, log, log_error, trace
 from notebook import notebook_execute, RestartKernel
+import asyncio
 
 if sys.platform == 'win32':
     from asyncio.windows_events import *
@@ -250,7 +249,6 @@ if __name__ == "__main__":
         elif command == "execute":
             trace('running notebook without keepalive')
             run_notebook(options, status)
-        
     except Exception as e:
         log_error("Unable to run notebook", exc_info = e)
         sys.exit(1)
