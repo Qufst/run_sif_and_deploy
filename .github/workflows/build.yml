@@ -44,13 +44,11 @@ jobs:
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
           ls -l /opt/quarto/share/jupyter 
-          chmod +x /opt/quarto/share/jupyter.py
           export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/:$PATH
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts//python
           sudo ln -s /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter /opt/quarto/share/jupyter
 
-          
-
+      
           which python
           which jupyter
           quarto render index.qmd
