@@ -40,7 +40,7 @@ jobs:
 
       - name: Copy and render QMD file with Quarto
         run: |
-          chmod +x  
+          chmod +x  /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
           export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/:$PATH
