@@ -51,12 +51,12 @@ jobs:
 
       - name: Copy and render QMD file with Quarto
         run: |
-          quarto check
           export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts:$PATH
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
           which python
           which jupyter
           echo "$(dirname $(which jupyter))" >> $GITHUB_PATH
+          quarto check
           quarto render index.qmd
 
 
