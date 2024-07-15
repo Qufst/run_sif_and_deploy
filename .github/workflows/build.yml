@@ -49,6 +49,16 @@ jobs:
           ls -la /usr/local/bin/quarto
 
 
+      - name: Add Jupyter to PATH
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const jupyterDir = path.dirname(process.env.JUPYTER_BIN || '/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter');
+            fs.appendFileSync(process.env.GITHUB_PATH, `${jupyterDir}\n`);
+
+
       - name: Copy and render QMD file with Quarto
         run: |
           chmod +x  /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
