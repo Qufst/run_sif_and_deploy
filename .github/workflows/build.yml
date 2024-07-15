@@ -65,7 +65,7 @@ jobs:
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
           export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts:$PATH
-          export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
+          export QUARTO_PYTHON=$HOME/run_sif_and_deploy/apptainer-scripts/python
           which python
           which jupyter
           ls -la /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/
