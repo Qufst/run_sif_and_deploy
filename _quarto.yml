@@ -1,12 +1,14 @@
-project:
-  type: website
+  project:
+    type: website
+    render: 
+      - index.qmd
 
-format:
-  html:
-    execute:
-      python: ~/run_sif_and_deploy/apptainer-scripts/python
-      jupyter: ~/run_sif_and_deploy/apptainer-scripts/jupyter
+  format:
+    html:
+      execute:
+        python: ~/run_sif_and_deploy/apptainer-scripts/python
+        jupyter: ~/run_sif_and_deploy/apptainer-scripts/jupyter
 
-execute:
-  freeze: auto
-  include-system-packages: true
+  execute:
+    freeze: auto
+    include-system-packages: true
