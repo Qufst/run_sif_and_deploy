@@ -1,0 +1,12 @@
+project:
+  type: website
+
+format:
+  html:
+    execute:
+      python: ~/run_sif_and_deploy/apptainer-scripts/python
+      jupyter: ~/run_sif_and_deploy/apptainer-scripts/jupyter
+
+execute:
+  freeze: auto
+  include-system-packages: true

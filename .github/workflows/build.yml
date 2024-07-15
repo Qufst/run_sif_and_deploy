@@ -44,7 +44,8 @@ jobs:
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
           chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
           ls -l /opt/quarto/share/jupyter 
-          export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/:$PATH
+          echo 'export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts:$PATH' >> ~/.bashrc
+          source ~/.bashrc
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts//python
           sudo ln -s /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter /opt/quarto/share/jupyter
 
