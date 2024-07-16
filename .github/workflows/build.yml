@@ -48,12 +48,6 @@ jobs:
           which quarto
           ls -la /usr/local/bin/quarto
 
-      - name: Copy Quarto to Apptainer
-        run: |
-          mkdir -p /usr/local/bin/tools/x86_64
-          cp /usr/local/bin/quarto /usr/local/bin/tools/x86_64/
-          cp -r /opt/quarto /usr/local/bin/tools/x86_64/
-
 
       - name: Copy and render QMD file with Quarto
         run: |
@@ -64,8 +58,8 @@ jobs:
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
           which python
           which jupyter
-
-          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto image.sif quarto check
-          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto image.sif quarto render index.qmd
+          quarto check
+          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto --bind /usr/local/bin/tools:/usr/local/bin/tools image.sif quarto check
+          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto --bind /usr/local/bin/tools:/usr/local/bin/tools image.sif quarto render index.qmd
 
 
