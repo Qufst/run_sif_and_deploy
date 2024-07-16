@@ -58,9 +58,8 @@ jobs:
           export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
           which python
           which jupyter
-          ls -la /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/
-          which quarto
-          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto image.sif which quarto
+          ls -la /usr/local/bin/tools/
+
           apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto image.sif quarto check
           apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto image.sif quarto render index.qmd
 
