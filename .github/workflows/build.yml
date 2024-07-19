@@ -22,20 +22,14 @@ jobs:
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 10003324301 -n apptainer-image -R Qufst/create_apptainer.sif
+          gh run download 10004774674 -n apptainer-image -R Qufst/create_apptainer.sif
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - name: add computo
-        run: |
-          quarto add --no-prompt computorg/computo-quarto-extension
 
 
       - name: Copy and render QMD file with Quarto
         run: |
           apptainer exec image.sif quarto render index.qmd
-          
-#gh run download 10003324301 -n apptainer-image -R Qufst/create_apptainer.sif
-#gh auth login
+
 
