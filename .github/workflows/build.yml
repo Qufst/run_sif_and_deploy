@@ -22,45 +22,20 @@ jobs:
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 9909457571 --repo Qufst/create_apptainer.sif --name apptainer-image
+          gh run download 10003324301 -n apptainer-image -R Qufst/create_apptainer.sif
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: put permission
-        run: |
-          chmod +x  /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
-          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
-          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
-          ls -la /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts
-          export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts:$PATH
-
-          ls -la /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts
-          export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
 
       - name: add computo
         run: |
           quarto add --no-prompt computorg/computo-quarto-extension
-          which quarto
-          ls -la /usr/local/bin/quarto
 
 
       - name: Copy and render QMD file with Quarto
         run: |
-          chmod +x  /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
-          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/jupyter
-          chmod +x /home/runner/work/run_sif_and_deploy/run_sif_and_deploy/jupyter
-          export PATH=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts:$PATH
-          export QUARTO_PYTHON=/home/runner/work/run_sif_and_deploy/run_sif_and_deploy/apptainer-scripts/python
-          which python
-          which jupyter
-          sudo ln -sf apptainer-scripts/python /usr/bin/python3
-          quarto check
-          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto --bind /usr/local/bin/tools:/usr/local/bin/tools image.sif quarto check
-          apptainer exec --bind /usr/local/bin/quarto:/usr/local/bin/quarto --bind /usr/local/bin/tools:/usr/local/bin/tools image.sif quarto render index.qmd
-
+          apptainer exec image.sif quarto render index.qmd
+          
+#gh run download 10003324301 -n apptainer-image -R Qufst/create_apptainer.sif
+#gh auth login
 
