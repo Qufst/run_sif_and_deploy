@@ -35,10 +35,9 @@ jobs:
         run: |
           apptainer exec image.sif quarto render index.qmd
 
-      - name: Render and publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
+      - name: Publish to GitHub Pages
+        run: |
+          apptainer exec image.sif quarto publish gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
