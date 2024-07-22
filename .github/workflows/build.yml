@@ -1,0 +1,52 @@
+name: from-singularity-deploy-papers
+
+on:
+  push:
+    branches: ["main"]
+  repository_dispatch:
+    types: [custom-event] 
+  workflow_dispatch:
+
+permissions: 
+  contents: write
+  pages: write
+
+jobs:
+  download-singularity-image:
+    name: Download Singularity Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.3.2
+
+      - name: Download Singularity image artifact
+        run: |
+          gh run download 10003324301 -n apptainer-image -R Qufst/create_apptainer.sif
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Creation of xdg_runtime_dir
+        run: |
+          mkdir -p xdg_runtime_dir
+          export XDG_RUNTIME_DIR=~/xdg_runtime_dir
+
+      - name: render
+        run: |
+          apptainer exec image.sif quarto render index.qmd
+
+      - name: Publish to GitHub Pages
+        run: |
+          apptainer exec image.sif quarto publish gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+#gh run download 10004774674 -n apptainer-image -R Qufst/create_apptainer.sif
+#gh auth login
+
