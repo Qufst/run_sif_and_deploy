@@ -41,7 +41,7 @@ jobs:
 
       - name: Publish to GitHub Pages
         run: |
-          apptainer exec image.sif quarto publish gh-pages
+          apptainer exec image.sif quarto publish gh-pages --orphan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
