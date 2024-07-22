@@ -1,8 +1,22 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - index.qmd
 
-publish:
-  gh-pages:
-    branch: gh-pages
-    orphan: true # If you want to create an orphan branch
+website:
+  repo-url: https://github.com/Qufst/run_sif_and_publish
+  repo-actions: [source, issue]
+  page-navigation: true
+  back-to-top-navigation: true
+  title: "Test image apptainer"
+  navbar:
+    search: true
+    tools: 
+      - icon: github
+        href: https://github.com/Qufst/run_sif_and_publish
+        text: GitHub
+
+jupyter: python3
+
+editor: visual
