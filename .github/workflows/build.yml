@@ -31,7 +31,11 @@ jobs:
           mkdir -p xdg_runtime_dir
           export XDG_RUNTIME_DIR=~/xdg_runtime_dir
 
-      - name: Copy and render QMD file with Quarto
+      - name: render
+        run: |
+          apptainer exec image.sif quarto render index.qmd
+
+      - name: publish QMD file with Quarto in gh-pages
         run: |
           apptainer exec image.sif quarto publish gh-pages index.qmd
 
