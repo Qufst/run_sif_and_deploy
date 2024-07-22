@@ -20,3 +20,9 @@ website:
 jupyter: python3
 
 editor: visual
+
+
+publish:
+  gh-pages:
+    branch: gh-pages
+    orphan: true
