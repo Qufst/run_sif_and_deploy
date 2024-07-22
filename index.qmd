@@ -2,7 +2,7 @@
 title: "Test Document"
 format: html
 jupyter: python3
-python: /home/qfestor/testapptainer/apptainer_scripts/python3
+
 ---
 
 ```{python}
