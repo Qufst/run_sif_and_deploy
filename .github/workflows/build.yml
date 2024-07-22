@@ -20,13 +20,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "quentin.festor@etu.umontpellier.com"
+          git config --global user.name "quarto-github-actions"
+
       - uses: eWaterCycle/setup-apptainer@v2
         with:
           apptainer-version: 1.3.2
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 10003324301 -n apptainer-image -R Qufst/create_apptainer.sif
+          gh run download 10005971130 -n apptainer-image -R Qufst/create_apptainer.sif
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -39,14 +44,21 @@ jobs:
         run: |
           apptainer exec image.sif quarto render index.qmd
 
-      - name: Publish to GitHub Pages
-        run: |
-          apptainer exec image.sif quarto publish gh-pages --orphan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: download-singularity-image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        publish_branch: gh-pages
 
 
 
-#gh run download 10004774674 -n apptainer-image -R Qufst/create_apptainer.sif
+#gh run download 10005971130 -n apptainer-image -R Qufst/create_apptainer.sif
 #gh auth login
 
