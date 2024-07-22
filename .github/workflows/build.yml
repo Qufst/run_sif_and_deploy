@@ -33,7 +33,8 @@ jobs:
 
       - name: Copy and render QMD file with Quarto
         run: |
-          apptainer exec image.sif quarto publish gh-pages index.qmd
+          apptainer exec image.sif quarto render index.qmd
+          apptainer exec image.sif quarto publish gh-pages
 
 #gh run download 10004774674 -n apptainer-image -R Qufst/create_apptainer.sif
 #gh auth login
