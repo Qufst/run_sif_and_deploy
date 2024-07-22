@@ -1,0 +1,8 @@
+project:
+  type: website
+  output-dir: docs
+
+publish:
+  gh-pages:
+    branch: gh-pages
+    orphan: true # If you want to create an orphan branch
