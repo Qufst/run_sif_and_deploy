@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Exemple de Document Quarto",
+    "section": "",
+    "text": "Introduction\nCe document est un exemple de fichier Quarto Markdown (.qmd) qui utilise Python, Jupyter, nbformat et numpy.\n\n\nUtilisation de Python\n\nprint(\"Bonjour, Quarto!\")\n\nBonjour, Quarto!\n\n\n\nimport nbformat\nfrom nbformat import read\n\n# Exemple de lecture d'un notebook Jupyter\nnotebook_path = 'notebook.ipynb' \nwith open(notebook_path, 'r', encoding='utf-8') as f:\n    nb = read(f, as_version=4)\n\n# Afficher les métadonnées du notebook\nprint(nb.metadata)\n\n{'language_info': {'name': 'python'}}\n\n\n\n\n\n\n Back to top"
+  }
+]
