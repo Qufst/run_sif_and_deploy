@@ -27,3 +27,19 @@ with open(notebook_path, 'r', encoding='utf-8') as f:
 # Afficher les métadonnées du notebook
 print(nb.metadata)
 ```
+
+```{python}
+import numpy as np
+
+# Création d'un tableau numpy
+a = np.array([1, 2, 3, 4, 5])
+print("Tableau numpy:", a)
+
+# Calcul de la moyenne
+moyenne = np.mean(a)
+print("Moyenne:", moyenne)
+
+# Calcul de l'écart type
+ecart_type = np.std(a)
+print("Écart type:", ecart_type)
+```
