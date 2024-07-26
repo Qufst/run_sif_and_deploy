@@ -45,6 +45,15 @@ jobs:
         run: |
           apptainer exec image_r.sif quarto render index_r.qmd
 
+      - name: Checkout gh-pages branch
+        run: |
+          git checkout gh-pages
+          git checkout main -- .
+          git add .
+          git commit -m "Update gh-pages with content from main"
+          git push origin gh-pages
+
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
