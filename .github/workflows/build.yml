@@ -47,9 +47,13 @@ jobs:
 
       - name: Checkout gh-pages branch
         run: |
+          git fetch origin
           git checkout gh-pages
-          git checkout main -- .
-          git add .
+  
+      - name: Copy content from main to gh-pages
+        run: |
+          git checkout main -- docs/
+          git add docs/
           git commit -m "Update gh-pages with content from main"
           git push origin gh-pages
 
