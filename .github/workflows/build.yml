@@ -40,22 +40,13 @@ jobs:
           mkdir -p xdg_runtime_dir
           export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
 
+      - name: Ensure docs directory exists
+        run: |
+          mkdir -p docs
           
       - name: render
         run: |
           apptainer exec image_r.sif quarto render index_r.qmd
-
-      - name: Checkout gh-pages branch
-        run: |
-          git fetch origin
-          git checkout gh-pages
-  
-      - name: Copy content from main to gh-pages
-        run: |
-          git checkout main -- docs/
-          git add docs/
-          git commit -m "Update gh-pages with content from main"
-          git push origin gh-pages
 
 
       - name: Deploy to GitHub Pages
