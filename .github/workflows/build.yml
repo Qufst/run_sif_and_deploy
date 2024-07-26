@@ -43,7 +43,7 @@ jobs:
           
       - name: render
         run: |
-          apptainer exec image_r.sif quarto render index.qmd
+          apptainer exec image_r.sif quarto render index_r.qmd
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
