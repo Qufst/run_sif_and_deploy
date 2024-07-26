@@ -10,7 +10,7 @@ Ce document est un exemple de fichier Quarto Markdown (.qmd) qui utilise R, Jupy
 ```{R}
 library(knitr)
 library(ggplot2)
-kable(results_df, caption = "Vérification des Packages R")
+
 
 # Créer un exemple de données
 data <- data.frame(
@@ -25,4 +25,30 @@ plot <- ggplot(data, aes(x = x, y = y)) +
 
 # Afficher le graphique
 print(plot)
+```
+
+```{R}
+library(ggplot2)
+# Charger le jeu de données mtcars
+data("mtcars")
+
+# Créer un graphique de dispersion
+plot <- ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = cyl), size = 3) +
+  labs(
+    title = "Relation entre le Poids et la Consommation de Carburant",
+    x = "Poids du Véhicule (1000 lbs)",
+    y = "Consommation de Carburant (mpg)",
+    color = "Nombre de Cylindres"
+  ) +
+  theme_minimal()
+
+# Afficher la figure
+print(plot)
+
+# Exporter la figure en PNG
+ggsave("figure.png", plot = plot, width = 8, height = 6)
+
+# Exporter la figure en PDF
+ggsave("figure.pdf", plot = plot, width = 8, height = 6)
 ```
