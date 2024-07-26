@@ -1,0 +1,52 @@
+---
+title: "Vérification des Dépendances R"
+format: html
+---
+
+```{r setup, include=FALSE}
+# Chargement des packages nécessaires
+required_packages <- list(
+  AsioHeaders = "1.22.1-2",
+  MASS = "7.3-60.2",
+  Matrix = "1.7-0",
+  R6 = "2.5.1",
+  RColorBrewer = "1.1-3",
+  Rcpp = "1.0.12"
+)
+
+# Fonction pour vérifier si un package est installé et a la bonne version
+check_package <- function(pkg, version) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    return(FALSE)
+  }
+  installed_version <- as.character(packageVersion(pkg))
+  return(installed_version == version)
+}
+
+# Vérification de la version de R
+r_version <- R.version.string
+required_r_version <- "R version 4.4.1"
+
+r_version_check <- r_version == required_r_version
+r_version_check
+# Vérification des packages
+results <- lapply(names(required_packages), function(pkg) {
+  version <- required_packages[[pkg]]
+  check_package(pkg, version)
+})
+
+# Affichage des résultats
+results_df <- data.frame(
+  Package = names(required_packages),
+  Version = unlist(required_packages),
+  Installed = unlist(results)
+)
+
+results_df
+if (r_version_check) {
+  cat("La version de R est correcte :", r_version, "\n")
+} else {
+  cat("La version de R est incorrecte. Version actuelle :", r_version, " Version requise :", required_r_version, "\n")
+}
+print(results_df)
+```
