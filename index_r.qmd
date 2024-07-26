@@ -3,7 +3,7 @@ title: "Vérification des Dépendances R"
 format: html
 ---
 
-```{r setup, include=FALSE}
+```{R}
 # Chargement des packages nécessaires
 required_packages <- list(
   AsioHeaders = "1.22.1-2",
