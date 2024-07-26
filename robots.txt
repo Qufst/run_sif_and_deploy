@@ -1,1 +1,0 @@
-Sitemap: https://Qufst.github.io/run_sif_and_deploy/sitemap.xml
