@@ -28,7 +28,7 @@ r_version <- R.version.string
 required_r_version <- "R version 4.4.1"
 
 r_version_check <- r_version == required_r_version
-r_version_check
+
 # Vérification des packages
 results <- lapply(names(required_packages), function(pkg) {
   version <- required_packages[[pkg]]
@@ -41,12 +41,11 @@ results_df <- data.frame(
   Version = unlist(required_packages),
   Installed = unlist(results)
 )
-
-results_df
 if (r_version_check) {
   cat("La version de R est correcte :", r_version, "\n")
 } else {
   cat("La version de R est incorrecte. Version actuelle :", r_version, " Version requise :", required_r_version, "\n")
 }
-print(results_df)
+library(knitr)
+kable(results_df, caption = "Vérification des Packages R")
 ```
