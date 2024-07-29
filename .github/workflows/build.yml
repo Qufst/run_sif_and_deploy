@@ -31,7 +31,7 @@ jobs:
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 10108352405 -n apptainer-image -R Qufst/create_apptainer.sif
+          gh run download 10140942870 -n apptainer-image -R Qufst/create_apptainer.sif
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -39,14 +39,10 @@ jobs:
         run: |
           mkdir -p xdg_runtime_dir
           export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
-
-      - name: Ensure docs directory exists
-        run: |
-          mkdir -p docs
           
       - name: render
         run: |
-          apptainer exec image_r.sif quarto render index_r.qmd
+          apptainer exec image_r.sif quarto render published-202407-susmann-adaptive-conformal.qmd
 
 
       - name: Deploy to GitHub Pages
@@ -55,11 +51,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           publish_branch: gh-pages
-          full_commit_message: ${{ github.event.head_commit.message }}
 
 
 
 #gh run download 10005971130 -n apptainer-image -R Qufst/create_apptainer.sif
-#gh run download 10107952891 -n apptainer-image -R Qufst/create_apptainer.sif
+#gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif
 #gh auth login
 

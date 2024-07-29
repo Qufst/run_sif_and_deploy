@@ -1,0 +1,8 @@
+library(httr)
+library(readr)
+
+# URL du fichier
+url <- "https://github.com/computorg/published-202407-susmann-adaptive-conformal/raw/main/simulation_studies/simulation_study2.rds"
+
+# Utiliser httr pour récupérer le contenu du fichier
+response <- GET(url)

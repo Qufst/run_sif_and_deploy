@@ -1,0 +1,529 @@
+@Preamble{ " \newcommand{\noop}[1]{} " }
+
+@inproceedings{gibbs2021adaptive,
+ author = {Gibbs, Isaac and Candes, Emmanuel},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {M. Ranzato and A. Beygelzimer and Y. Dauphin and P.S. Liang and J. Wortman Vaughan},
+ pages = {1660--1672},
+ publisher = {Curran Associates, Inc.},
+ title = {Adaptive Conformal Inference Under Distribution Shift},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2021/file/0d441de75945e5acbc865406fc9a2559-Paper.pdf},
+ volume = {34},
+ year = {2021}
+}
+
+@InProceedings{zaffran2022agaci,
+  title =    {Adaptive Conformal Predictions for Time Series},
+  author =       {Zaffran, Margaux and Feron, Olivier and Goude, Yannig and Josse, Julie and Dieuleveut, Aymeric},
+  booktitle =    {Proceedings of the 39th International Conference on Machine Learning},
+  pages =    {25834--25866},
+  year =   {2022},
+  editor =   {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  volume =   {162},
+  series =   {Proceedings of Machine Learning Research},
+  month =    {17--23 Jul},
+  publisher =    {PMLR},
+  pdf =    {https://proceedings.mlr.press/v162/zaffran22a/zaffran22a.pdf},
+  url =    {https://proceedings.mlr.press/v162/zaffran22a.html},
+  abstract =   {Uncertainty quantification of predictive models is crucial in decision-making problems. Conformal prediction is a general and theoretically sound answer. However, it requires exchangeable data, excluding time series. While recent works tackled this issue, we argue that Adaptive Conformal Inference (ACI, Gibbs &amp; Cand{è}s, 2021), developed for distribution-shift time series, is a good procedure for time series with general dependency. We theoretically analyse the impact of the learning rate on its efficiency in the exchangeable and auto-regressive case. We propose a parameter-free method, AgACI, that adaptively builds upon ACI based on online expert aggregation. We lead extensive fair simulations against competing methods that advocate for ACI’s use in time series. We conduct a real case study: electricity price forecasting. The proposed aggregation algorithm provides efficient prediction intervals for day-ahead forecasting. All the code and data to reproduce the experiments are made available on GitHub.}
+}
+
+@misc{gibbs2022faci,
+  title={Conformal Inference for Online Prediction with Arbitrary Distribution Shifts}, 
+  author={Isaac Gibbs and Emmanuel Candès},
+  year={2022},
+  eprint={2208.08401},
+  archivePrefix={arXiv},
+  primaryClass={stat.ME}
+}
+
+@inproceedings{bhatnagar2023saocp,
+author = {Bhatnagar, Aadyot and Wang, Huan and Xiong, Caiming and Bai, Yu},
+title = {Improved Online Conformal Prediction via Strongly Adaptive Online Learning},
+year = {2023},
+publisher = {JMLR.org},
+abstract = {We study the problem of uncertainty quantification via prediction sets, in an online setting where the data distribution may vary arbitrarily over time. Recent work develops online conformal prediction techniques that leverage regret minimization algorithms from the online learning literature to learn prediction sets with approximately valid coverage and small regret. However, standard regret minimization could be insufficient for handling changing environments, where performance guarantees may be desired not only over the full time horizon but also in all (sub-)intervals of time. We develop new online conformal prediction methods that minimize the strongly adaptive regret, which measures the worst-case regret over all intervals of a fixed length. We prove that our methods achieve near-optimal strongly adaptive regret for all interval lengths simultaneously, and approximately valid coverage. Experiments show that our methods consistently obtain better coverage and smaller prediction sets than existing methods on real-world tasks, such as time series forecasting and image classification under distribution shift.},
+booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+articleno = {100},
+numpages = {27},
+location = {Honolulu, Hawaii, USA},
+series = {ICML'23}
+}
+
+
+@article{angelopoulos2022gentle,
+author = {Angelopoulos, Anastasios N. and Bates, Stephen},
+title = {Conformal Prediction: A Gentle Introduction},
+year = {2023},
+issue_date = {Mar 2023},
+publisher = {Now Publishers Inc.},
+address = {Hanover, MA, USA},
+volume = {16},
+number = {4},
+issn = {1935-8237},
+url = {https://doi.org/10.1561/2200000101},
+doi = {10.1561/2200000101},
+abstract = {Black-box machine learning models are now routinely used in high-risk settings, like medical diagnostics, which demand uncertainty quantification to avoid consequential model failures. Conformal prediction (a.k.a. conformal inference) is a user-friendly paradigm for creating statistically rigorous uncertainty sets/intervals for the predictions of such models. Critically, the sets are valid in a distribution-free sense: they possess explicit, non-asymptotic guarantees even without distributional assumptions or model assumptions. One can use conformal prediction with any pre-trained model, such as a neural network, to produce sets that are guaranteed to contain the ground truth with a user-specified probability, such as 90\%. It is easy-to-understand, easy-to-use, and general, applying naturally to problems arising in the fields of computer vision, natural language processing, deep reinforcement learning, and so on.This hands-on introduction is aimed to provide the reader a working understanding of conformal prediction and related distribution-free uncertainty quantification techniques with one self-contained document. We lead the reader through practical theory for and examples of conformal prediction and describe its extensions to complex machine learning tasks involving structured outputs, distribution shift, timeseries, outliers, models that abstain, and more. Throughout, there are many explanatory illustrations, examples, and code samples in Python. With each code sample comes a Jupyter notebook implementing the method on a real-data example; the notebooks can be accessed and easily run by following the code footnotes.},
+journal = {Found. Trends Mach. Learn.},
+month = {mar},
+pages = {494–591},
+numpages = {114}
+}
+
+
+
+@article{barber2023conformal,
+	author = {Rina Foygel Barber and Emmanuel J. Cand{\`e}s and Aaditya Ramdas and Ryan J. Tibshirani},
+	doi = {10.1214/23-AOS2276},
+	journal = {The Annals of Statistics},
+	keywords = {conformal prediction, distribution-free inference, exchangeability, jackknife, robust statistics},
+	number = {2},
+	pages = {816 -- 845},
+	publisher = {Institute of Mathematical Statistics},
+	title = {{Conformal prediction beyond exchangeability}},
+	url = {https://doi.org/10.1214/23-AOS2276},
+	volume = {51},
+	year = {2023},
+	bdsk-url-1 = {https://doi.org/10.1214/23-AOS2276}}
+
+
+@article{jung2022batch,
+  bibtex_show = {true},
+  title = {Batch Multivalid Conformal Prediction},
+  author = {Jung, Christopher and Noarov, Georgy and Ramalingam, Ramya and Roth, Aaron},
+  arxiv = {2209.15145},
+  journal = {11th International Conference on Learning Representations (ICLR)},
+  year = {2023},
+  code = {https://github.com/ProgBelarus/BatchMultivalidConformal},
+  preview = {conformal.png}
+}
+
+@inproceedings{bastani2022practical,
+	author = {Bastani, Osbert and Gupta, Varun and Jung, Christopher and Noarov, Georgy and Ramalingam, Ramya and Roth, Aaron},
+	booktitle = {Advances in Neural Information Processing Systems},
+	editor = {S. Koyejo and S. Mohamed and A. Agarwal and D. Belgrave and K. Cho and A. Oh},
+	pages = {29362--29373},
+	publisher = {Curran Associates, Inc.},
+	title = {Practical Adversarial Multivalid Conformal Prediction},
+	url = {https://proceedings.neurips.cc/paper_files/paper/2022/file/bcdaaa1aec3ae2aa39542acefdec4e4b-Paper-Conference.pdf},
+	volume = {35},
+	year = {2022},
+	bdsk-url-1 = {https://proceedings.neurips.cc/paper_files/paper/2022/file/bcdaaa1aec3ae2aa39542acefdec4e4b-Paper-Conference.pdf}}
+
+
+@book{vovk2005,
+  author = {Vovk, Vladimir and Gammerman, Alex and Shafer, Glenn},
+  title = {Algorithmic Learning in a Random World},
+  year = {2005},
+  isbn = {0387001522},
+  publisher = {Springer-Verlag},
+  address = {Berlin, Heidelberg}
+}
+
+@Manual{opera2023,
+    title = {opera: Online Prediction by Expert Aggregation},
+    author = {Pierre Gaillard and Yannig Goude and Laurent Plagne and Thibaut Dubois and Benoit Thieurmel},
+    year = {2023},
+    note = {R package version 1.2.1},
+    url = {http://pierre.gaillard.me/opera.html},
+  }
+
+@Article{wintenberger2017boa,
+  author={Wintenberger, Olivier},
+  title={Optimal learning with Bernstein online aggregation},
+  journal={Machine Learning},
+  year={2017},
+  month={Jan},
+  day={01},
+  volume={106},
+  number={1},
+  pages={119-141},
+  abstract={We introduce a new recursive aggregation procedure called Bernstein Online Aggregation (BOA). Its exponential weights include a second order refinement. The procedure is optimal for the model selection aggregation problem in the bounded iid setting for the square loss: the excess of risk of its batch version achieves the fast rate of convergence {\$}{\$}{\backslash}log (M)/n{\$}{\$}in deviation. The BOA procedure is the first online algorithm that satisfies this optimal fast rate. The second order refinement is required to achieve the optimality in deviation as the classical exponential weights cannot be optimal, see Audibert (Advances in neural information processing systems. MIT Press, Cambridge, MA, 2007). This refinement is settled thanks to a new stochastic conversion that estimates the cumulative predictive risk in any stochastic environment with observable second order terms. The observable second order term is shown to be sufficiently small to assert the fast rate in the iid setting when the loss is Lipschitz and strongly convex. We also introduce a multiple learning rates version of BOA. This fully adaptive BOA procedure is also optimal, up to a {\$}{\$}{\backslash}log {\backslash}log (n){\$}{\$}factor.},
+  issn={1573-0565},
+  doi={10.1007/s10994-016-5592-6},
+  url={https://doi.org/10.1007/s10994-016-5592-6}
+}
+
+@article{orabona2018sfogd,
+  title = {Scale-free online learning},
+  journal = {Theoretical Computer Science},
+  volume = {716},
+  pages = {50-69},
+  year = {2018},
+  note = {Special Issue on ALT 2015},
+  issn = {0304-3975},
+  doi = {https://doi.org/10.1016/j.tcs.2017.11.021},
+  url = {https://www.sciencedirect.com/science/article/pii/S0304397517308514},
+  author = {Francesco Orabona and Dávid Pál},
+  keywords = {Online algorithms, Optimization, Regret bounds, Online learning},
+  abstract = {We design and analyze algorithms for online linear optimization that have optimal regret and at the same time do not need to know any upper or lower bounds on the norm of the loss vectors. Our algorithms are instances of the Follow the Regularized Leader (FTRL) and Mirror Descent (MD) meta-algorithms. We achieve adaptiveness to the norms of the loss vectors by scale invariance, i.e., our algorithms make exactly the same decisions if the sequence of loss vectors is multiplied by any positive constant. The algorithm based on FTRL works for any decision set, bounded or unbounded. For unbounded decisions sets, this is the first adaptive algorithm for online linear optimization with a non-vacuous regret bound. In contrast, we show lower bounds on scale-free algorithms based on MD on unbounded domains.}
+}
+
+@InProceedings{gradu2022adaptive,
+  title = 	 {Adaptive Regret for Control of Time-Varying Dynamics},
+  author =       {Gradu, Paula and Hazan, Elad and Minasyan, Edgar},
+  booktitle = 	 {Proceedings of The 5th Annual Learning for Dynamics and Control Conference},
+  pages = 	 {560--572},
+  year = 	 {2023},
+  editor = 	 {Matni, Nikolai and Morari, Manfred and Pappas, George J.},
+  volume = 	 {211},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {15--16 Jun},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v211/gradu23a/gradu23a.pdf},
+  url = 	 {https://proceedings.mlr.press/v211/gradu23a.html},
+  abstract = 	 {We consider the problem of online control of systems with time-varying linear dynamics. To state meaningful guarantees over changing environments, we introduce the metric of {\it adaptive regret} to the field of control. This metric, originally studied in online learning, measures performance in terms of regret against the best policy in hindsight on {\it any interval in time}, and thus captures the adaptation of the controller to changing dynamics. Our main contribution is a novel efficient meta-algorithm: it converts a controller with sublinear regret bounds into one with sublinear {\it adaptive regret} bounds in the setting of time-varying linear dynamical systems.  The underlying technical innovation is the first adaptive regret bound for the more general framework of online convex optimization with memory. Furthermore, we give a lower bound showing that our attained adaptive regret bound is nearly tight for this general framework.}
+}
+
+
+@book{cesabianchi2006games,
+  place={Cambridge}, 
+  title={Prediction, Learning, and Games},
+  DOI={10.1017/CBO9780511546921}, 
+  publisher={Cambridge University Press}, 
+  author={Cesa-Bianchi, Nicolo and Lugosi, Gabor},
+  year={2006}
+}
+
+@ARTICLE{reich2019influenza,
+  title    = "A collaborative multiyear, multimodel assessment of seasonal
+              influenza forecasting in the United States",
+  author   = "Reich, Nicholas G and Brooks, Logan C and Fox, Spencer J and
+              Kandula, Sasikiran and McGowan, Craig J and Moore, Evan and
+              Osthus, Dave and Ray, Evan L and Tushar, Abhinav and Yamana,
+              Teresa K and Biggerstaff, Matthew and Johansson, Michael A and
+              Rosenfeld, Roni and Shaman, Jeffrey",
+  abstract = "Influenza infects an estimated 9-35 million individuals each year
+              in the United States and is a contributing cause for between
+              12,000 and 56,000 deaths annually. Seasonal outbreaks of
+              influenza are common in temperate regions of the world, with
+              highest incidence typically occurring in colder and drier months
+              of the year. Real-time forecasts of influenza transmission can
+              inform public health response to outbreaks. We present the
+              results of a multiinstitution collaborative effort to standardize
+              the collection and evaluation of forecasting models for influenza
+              in the United States for the 2010/2011 through 2016/2017
+              influenza seasons. For these seven seasons, we assembled weekly
+              real-time forecasts of seven targets of public health interest
+              from 22 different models. We compared forecast accuracy of each
+              model relative to a historical baseline seasonal average. Across
+              all regions of the United States, over half of the models showed
+              consistently better performance than the historical baseline when
+              forecasting incidence of influenza-like illness 1 wk, 2 wk, and 3
+              wk ahead of available data and when forecasting the timing and
+              magnitude of the seasonal peak. In some regions, delays in data
+              reporting were strongly and negatively associated with forecast
+              accuracy. More timely reporting and an improved overall
+              accessibility to novel and traditional data sources are needed to
+              improve forecasting accuracy and its integration with real-time
+              public health decision making.",
+  journal  = "Proc. Natl. Acad. Sci. U. S. A.",
+  volume   =  116,
+  number   =  8,
+  pages    = "3146--3154",
+  month    =  feb,
+  year     =  2019,
+  keywords = "forecasting; infectious disease; influenza; public health;
+              statistics",
+  language = "en"
+}
+
+@article{friedman1983,
+author = {Friedman, Jerome H. and Grosse, Eric and Stuetzle, Werner},
+title = {Multidimensional Additive Spline Approximation},
+journal = {SIAM Journal on Scientific and Statistical Computing},
+volume = {4},
+number = {2},
+pages = {291-301},
+year = {1983},
+doi = {10.1137/0904023},
+URL = {https://doi.org/10.1137/0904023},
+eprint = {https://doi.org/10.1137/0904023},
+abstract = { We describe an adaptive procedure that approximates a function of many variables by a sum of (univariate) spline functions \$s\_m \$ of selected linear combinations \$a\_m \cdot x\$ of the coordinates \[ \phi (x) = \sum\_{1 \leqq m \leqq M} {s\_m ( a\_m \cdot x)}. \] The procedure is nonlinear in that not only the spline coefficients but also the linear combinations are optimized for the particular problem. The sample need not lie on a regular grid, and the approximation is affine invariant, smooth, and lends itself to graphical interpretation. Function values, derivatives, and integrals are inexpensive to evaluate. }
+}
+
+@article{shafer2008conformal,
+author = {Shafer, Glenn and Vovk, Vladimir},
+title = {A Tutorial on Conformal Prediction},
+year = {2008},
+issue_date = {6/1/2008},
+publisher = {JMLR.org},
+volume = {9},
+issn = {1532-4435},
+abstract = {Conformal prediction uses past experience to determine precise levels of confidence in new predictions. Given an error probability ε, together with a method that makes a prediction undefined of a label y, it produces a set of labels, typically containing undefined, that also contains y with probability 1 – ε. Conformal prediction can be applied to any method for producing undefined: a nearest-neighbor method, a support-vector machine, ridge regression, etc.Conformal prediction is designed for an on-line setting in which labels are predicted successively, each one being revealed before the next is predicted. The most novel and valuable feature of conformal prediction is that if the successive examples are sampled independently from the same distribution, then the successive predictions will be right 1 – ε of the time, even though they are based on an accumulating data set rather than on independent data sets.In addition to the model under which successive examples are sampled independently, other on-line compression models can also use conformal prediction. The widely used Gaussian linear model is one of these.This tutorial presents a self-contained account of the theory of conformal prediction and works through several numerical examples. A more comprehensive treatment of the topic is provided in Algorithmic Learning in a Random World, by Vladimir Vovk, Alex Gammerman, and Glenn Shafer (Springer, 2005).},
+journal = {J. Mach. Learn. Res.},
+month = {jun},
+pages = {371–421},
+numpages = {51}
+}
+
+
+@InProceedings{jun2017coinbetting,
+  title = 	 {{Improved Strongly Adaptive Online Learning using Coin Betting}},
+  author = 	 {Jun, Kwang-Sung and Orabona, Francesco and Wright, Stephen and Willett, Rebecca},
+  booktitle = 	 {Proceedings of the 20th International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {943--951},
+  year = 	 {2017},
+  editor = 	 {Singh, Aarti and Zhu, Jerry},
+  volume = 	 {54},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {20--22 Apr},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v54/jun17a/jun17a.pdf},
+  url = 	 {https://proceedings.mlr.press/v54/jun17a.html},
+  abstract = 	 {This paper describes a new parameter-free online learning algorithm for changing environments.  In comparing against algorithms with the same time complexity as ours, we obtain a strongly adaptive regret bound that is a factor of at least $\sqrt\log(T)$ better, where $T$ is the time horizon.  Empirical results show that our algorithm outperforms state-of-the-art methods in learning with expert advice and metric learning scenarios.   }
+}
+
+
+@Article{wright2017ranger,
+    title = {{ranger}: A Fast Implementation of Random Forests for High Dimensional Data in {C++} and {R}},
+    author = {Marvin N. Wright and Andreas Ziegler},
+    journal = {Journal of Statistical Software},
+    year = {2017},
+    volume = {77},
+    number = {1},
+    pages = {1--17},
+    doi = {10.18637/jss.v077.i01},
+  }
+
+@Article{krammer2018influenza,
+author={Krammer, Florian
+and Smith, Gavin J. D.
+and Fouchier, Ron A. M.
+and Peiris, Malik
+and Kedzierska, Katherine
+and Doherty, Peter C.
+and Palese, Peter
+and Shaw, Megan L.
+and Treanor, John
+and Webster, Robert G.
+and Garc{\'i}a-Sastre, Adolfo},
+title={Influenza},
+journal={Nature Reviews Disease Primers},
+year={2018},
+month={Jun},
+day={28},
+volume={4},
+number={1},
+pages={3},
+abstract={Influenza is an infectious respiratory disease that, in humans, is caused by influenza A and influenza B viruses. Typically characterized by annual seasonal epidemics, sporadic pandemic outbreaks involve influenza A virus strains of zoonotic origin. The WHO estimates that annual epidemics of influenza result in {\textasciitilde}1 billion infections, 3--5 million cases of severe illness and 300,000--500,000 deaths. The severity of pandemic influenza depends on multiple factors, including the virulence of the pandemic virus strain and the level of pre-existing immunity. The most severe influenza pandemic, in 1918, resulted in{\thinspace}>40 million deaths worldwide. Influenza vaccines are formulated every year to match the circulating strains, as they evolve antigenically owing to antigenic drift. Nevertheless, vaccine efficacy is not optimal and is dramatically low in the case of an antigenic mismatch between the vaccine and the circulating virus strain. Antiviral agents that target the influenza virus enzyme neuraminidase have been developed for prophylaxis and therapy. However, the use of these antivirals is still limited. Emerging approaches to combat influenza include the development of universal influenza virus vaccines that provide protection against antigenically distant influenza viruses, but these vaccines need to be tested in clinical trials to ascertain their effectiveness.},
+issn={2056-676X},
+doi={10.1038/s41572-018-0002-y},
+url={https://doi.org/10.1038/s41572-018-0002-y}
+}
+
+@article{lofgren2007influenza,
+author = {Eric Lofgren and N. H. Fefferman and Y. N. Naumov and J. Gorski and E. N. Naumova},
+title = {Influenza Seasonality: Underlying Causes and Modeling Theories},
+journal = {Journal of Virology},
+volume = {81},
+number = {11},
+pages = {5429-5436},
+year = {2007},
+doi = {10.1128/jvi.01680-06},
+
+URL = {https://journals.asm.org/doi/abs/10.1128/jvi.01680-06},
+eprint = {https://journals.asm.org/doi/pdf/10.1128/jvi.01680-06}
+
+}
+
+@Article{biggerstaff2016flusight,
+author={Biggerstaff, Matthew
+and Alper, David
+and Dredze, Mark
+and Fox, Spencer
+and Fung, Isaac Chun-Hai
+and Hickmann, Kyle S.
+and Lewis, Bryan
+and Rosenfeld, Roni
+and Shaman, Jeffrey
+and Tsou, Ming-Hsiang
+and Velardi, Paola
+and Vespignani, Alessandro
+and Finelli, Lyn
+and for the Influenza Forecasting Contest Working Group},
+title={Results from the centers for disease control and prevention's predict the 2013--2014 Influenza Season Challenge},
+journal={BMC Infectious Diseases},
+year={2016},
+month={Jul},
+day={22},
+volume={16},
+number={1},
+pages={357},
+abstract={Early insights into the timing of the start, peak, and intensity of the influenza season could be useful in planning influenza prevention and control activities. To encourage development and innovation in influenza forecasting, the Centers for Disease Control and Prevention (CDC) organized a challenge to predict the 2013--14 Unites States influenza season.},
+issn={1471-2334},
+doi={10.1186/s12879-016-1669-x},
+url={https://doi.org/10.1186/s12879-016-1669-x}
+}
+
+@misc{tushar2018flusightnetwork,
+  author = {Tushar, Abhinav and Reich, Nicholas and Yamana, Teresa and Osthus, Dave and McGowan, Craig and Ray, Evan and et al.},
+  title = {FluSightNetwork: cdc-flusight-ensemble repository},
+  year = {2018},
+  howpublished = {\url{https://github.com/FluSightNetwork/cdc-flusight-ensemble}}
+}
+
+@Manual{tibshirani2019ci,
+    title = {conformalInference: Tools for conformal inference in regression},
+    author = {Ryan Tibshirani and Jacopo Diquigiovanni and Matteo Fontana and Paolo Vergottini},
+    year = {2019},
+    note = {R package version 1.1},
+  }
+
+@Manual{diquigiovanni2022fd,
+    title = {conformalInference.fd: Tools for Conformal Inference for Regression in Multivariate
+Functional Setting},
+    author = {Jacopo Diquigiovanni and Matteo Fontana and Aldo Solari and Simone Vantini and Paolo Vergottini},
+    year = {2022},
+    note = {R package version 1.1.1},
+    url = {https://CRAN.R-project.org/package=conformalInference.fd},
+}
+
+@article{lei2020cfcausal,
+    author = {Lei, Lihua and Candès, Emmanuel J.},
+    title = "{Conformal Inference of Counterfactuals and Individual Treatment Effects}",
+    journal = {Journal of the Royal Statistical Society Series B: Statistical Methodology},
+    volume = {83},
+    number = {5},
+    pages = {911-938},
+    year = {2021},
+    month = {10},
+    abstract = "{Evaluating treatment effect heterogeneity widely informs treatment decision making. At the moment, much emphasis is placed on the estimation of the conditional average treatment effect via flexible machine learning algorithms. While these methods enjoy some theoretical appeal in terms of consistency and convergence rates, they generally perform poorly in terms of uncertainty quantification. This is troubling since assessing risk is crucial for reliable decision-making in sensitive and uncertain environments. In this work, we propose a conformal inference-based approach that can produce reliable interval estimates for counterfactuals and individual treatment effects under the potential outcome framework. For completely randomized or stratified randomized experiments with perfect compliance, the intervals have guaranteed average coverage in finite samples regardless of the unknown data generating mechanism. For randomized experiments with ignorable compliance and general observational studies obeying the strong ignorability assumption, the intervals satisfy a doubly robust property which states the following: the average coverage is approximately controlled if either the propensity score or the conditional quantiles of potential outcomes can be estimated accurately. Numerical studies on both synthetic and real data sets empirically demonstrate that existing methods suffer from a significant coverage deficit even in simple models. In contrast, our methods achieve the desired coverage with reasonably short intervals.}",
+    issn = {1369-7412},
+    doi = {10.1111/rssb.12445},
+    url = {https://doi.org/10.1111/rssb.12445},
+    eprint = {https://academic.oup.com/jrsssb/article-pdf/83/5/911/49322261/jrsssb\_83\_5\_911.pdf},
+}
+
+@article{gneiting2007scoring,
+author = {Tilmann Gneiting and Adrian E Raftery},
+title = {Strictly Proper Scoring Rules, Prediction, and Estimation},
+journal = {Journal of the American Statistical Association},
+volume = {102},
+number = {477},
+pages = {359-378},
+year  = {2007},
+publisher = {Taylor & Francis},
+doi = {10.1198/016214506000001437},
+URL = {https://doi.org/10.1198/016214506000001437},
+eprint = {https://doi.org/10.1198/016214506000001437}
+}
+
+@article{makridakis2020m4,
+title = {The M4 Competition: 100,000 time series and 61 forecasting methods},
+journal = {International Journal of Forecasting},
+volume = {36},
+number = {1},
+pages = {54-74},
+year = {2020},
+note = {M4 Competition},
+issn = {0169-2070},
+doi = {https://doi.org/10.1016/j.ijforecast.2019.04.014},
+url = {https://www.sciencedirect.com/science/article/pii/S0169207019301128},
+author = {Spyros Makridakis and Evangelos Spiliotis and Vassilios Assimakopoulos},
+keywords = {Forecasting competitions, M competitions, Forecasting accuracy, Prediction intervals, Time series methods, Machine learning methods, Benchmarking methods, Practice of forecasting},
+abstract = {The M4 Competition follows on from the three previous M competitions, the purpose of which was to learn from empirical evidence both how to improve the forecasting accuracy and how such learning could be used to advance the theory and practice of forecasting. The aim of M4 was to replicate and extend the three previous competitions by: (a) significantly increasing the number of series, (b) expanding the number of forecasting methods, and (c) including prediction intervals in the evaluation process as well as point forecasts. This paper covers all aspects of M4 in detail, including its organization and running, the presentation of its results, the top-performing methods overall and by categories, its major findings and their implications, and the computational requirements of the various methods. Finally, it summarizes its main conclusions and states the expectation that its series will become a testing ground for the evaluation of new methods and the improvement of the practice of forecasting, while also suggesting some ways forward for the field.}
+}
+
+@article{feldman2023achieving,
+title={Achieving Risk Control in Online Learning Settings},
+author={Shai Feldman and Liran Ringel and Stephen Bates and Yaniv Romano},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2023},
+url={https://openreview.net/forum?id=5Y04GWvoJu},
+note={}
+}
+
+@InProceedings{xu2021enbpi,
+  title = 	 {Conformal prediction interval for dynamic time-series},
+  author =       {Xu, Chen and Xie, Yao},
+  booktitle = 	 {Proceedings of the 38th International Conference on Machine Learning},
+  pages = 	 {11559--11569},
+  year = 	 {2021},
+  editor = 	 {Meila, Marina and Zhang, Tong},
+  volume = 	 {139},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {18--24 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v139/xu21h/xu21h.pdf},
+  url = 	 {https://proceedings.mlr.press/v139/xu21h.html},
+  abstract = 	 {We develop a method to construct distribution-free prediction intervals for dynamic time-series, called \Verb|EnbPI| that wraps around any bootstrap ensemble estimator to construct sequential prediction intervals. \Verb|EnbPI| is closely related to the conformal prediction (CP) framework but does not require data exchangeability. Theoretically, these intervals attain finite-sample, \textit{approximately valid} marginal coverage for broad classes of regression functions and time-series with strongly mixing stochastic errors. Computationally, \Verb|EnbPI| avoids overfitting and requires neither data-splitting nor training multiple ensemble estimators; it efficiently aggregates bootstrap estimators that have been trained. In general, \Verb|EnbPI| is easy to implement, scalable to producing arbitrarily many prediction intervals sequentially, and well-suited to a wide range of regression functions. We perform extensive real-data analyses to demonstrate its effectiveness.}
+}
+
+
+@InProceedings{xu2023spci,
+  title = 	 {Sequential Predictive Conformal Inference for Time Series},
+  author =       {Xu, Chen and Xie, Yao},
+  booktitle = 	 {Proceedings of the 40th International Conference on Machine Learning},
+  pages = 	 {38707--38727},
+  year = 	 {2023},
+  editor = 	 {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume = 	 {202},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {23--29 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://proceedings.mlr.press/v202/xu23r/xu23r.pdf},
+  url = 	 {https://proceedings.mlr.press/v202/xu23r.html},
+  abstract = 	 {We present a new distribution-free conformal prediction algorithm for sequential data (e.g., time series), called the <em>sequential predictive conformal inference</em> (SPCI). We specifically account for the nature that time series data are non-exchangeable, and thus many existing conformal prediction algorithms are not applicable. The main idea is to adaptively re-estimate the conditional quantile of non-conformity scores (e.g., prediction residuals), upon exploiting the temporal dependence among them. More precisely, we cast the problem of conformal prediction interval as predicting the quantile of a future residual, given a user-specified point prediction algorithm. Theoretically, we establish asymptotic valid conditional coverage upon extending consistency analyses in quantile regression. Using simulation and real-data experiments, we demonstrate a significant reduction in interval width of SPCI compared to other existing methods under the desired empirical coverage.}
+}
+
+@software{tushar2019flusight,
+  author       = {Abhinav Tushar and
+                  Nicholas G Reich and
+                  tkcy and
+                  brookslogan and
+                  d-osthus and
+                  Craig McGowan and
+                  Evan Ray and
+                  Katie House and
+                  Spencer J Fox and
+                  Evan Moore and
+                  lcbrooks and
+                  Adam Leskis and
+                  Xinyue X and
+                  NutchaW},
+  title        = {{FluSightNetwork/cdc-flusight-ensemble: End of 
+                   2018/2019 US influenza season}},
+  month        = sep,
+  year         = 2019,
+  publisher    = {Zenodo},
+  version      = {v.2.0},
+  doi          = {10.5281/zenodo.3454212},
+  url          = {https://doi.org/10.5281/zenodo.3454212}
+}
+
+@misc{flusight2020,
+  author={{Flusight Network}},
+  year={2020},
+  title={GitHub - FluSightNetwork/cdc-flusight-ensemble: Guidelines and forecasts for
+a collaborative U.S. influenza forecasting project},
+  url={https://github.com/FluSightNetwork/}
+}
+
+@misc{angelopoulos2024online,
+      title={Online conformal prediction with decaying step sizes}, 
+      author={Anastasios N. Angelopoulos and Rina Foygel Barber and Stephen Bates},
+      year={2024},
+      eprint={2402.01139},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML}
+}
+
+@misc{gasparin2024conformal,
+      title={Conformal online model aggregation}, 
+      author={Matteo Gasparin and Aaditya Ramdas},
+      year={2024},
+      eprint={2403.15527},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML}
+}
+
+@misc{zhang2024discounted,
+      title={Discounted Adaptive Online Prediction}, 
+      author={Zhiyu Zhang and David Bombara and Heng Yang},
+      year={2024},
+      eprint={2402.02720},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
