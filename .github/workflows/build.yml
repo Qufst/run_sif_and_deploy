@@ -31,9 +31,17 @@ jobs:
 
       - name: Download Singularity image artifact
         run: |
-          gh run download 10140942870 -n apptainer-image -R Qufst/create_apptainer.sif
+          gh run download 10145928426 -n apptainer-image -R Qufst/create_apptainer.sif
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: sandbox
+        run: |
+          apptainer build --sandbox temp_sandbox image_quarto.sif   
+          
+      - name: exec
+        run: |
+          apptainer exec --writable temp_sandbox install_quarto.sh
 
       - name: Creation of xdg_runtime_dir
         run: |
@@ -42,7 +50,9 @@ jobs:
           
       - name: render
         run: |
-          apptainer exec image_r.sif quarto render published-202407-susmann-adaptive-conformal.qmd
+          apptainer exec --writable temp_sandbox echo 'export PATH=/opt/quarto/bin:$PATH' >> /etc/profile
+          apptainer exec temp_sandbox export PATH=/opt/quarto/bin:$PATH
+          apptainer exec image_r.sif quarto render index.qmd
 
 
       - name: Deploy to GitHub Pages
