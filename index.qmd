@@ -1,8 +1,60 @@
 ---
-title: "Exemple de Document Quarto"
-author: "Votre Nom"
-date: "2023-07-22"
-format: html
+title: "AdaptiveConformal: An `R` Package for Adaptive Conformal Inference"
+subtitle: "AdaptiveConformal: An `R` Package for Adaptive Conformal Inference"
+author:
+  - name: Herbert Susmann
+    corresponding: true
+    email: herbps10@gmail.com
+    url: https://herbsusmann.com
+    orcid: 0000-0002-3540-8255
+    affiliations:
+      - name: CEREMADE (UMR 7534), Université Paris-Dauphine PSL, Place du Maréchal de Lattre de Tassigny, Paris, 75016, France
+        url: https://www.ceremade.dauphine.fr/
+  - name: Antoine Chambaz
+    email: antoine.chambaz@u-paris.fr
+    url: https://helios2.mi.parisdescartes.fr/~chambaz/
+    orcid: 0000-0002-5592-6471
+    affiliations:
+      - name: Université Paris Cité, CNRS, MAP5, F-75006 Paris, France
+        department:
+        url: https://map5.mi.parisdescartes.fr/
+  - name: Julie Josse
+    email: julie.josse@inria.fr
+    url: http://juliejosse.com/
+    orcid: 0000-0001-9547-891X
+    affiliations:
+      - name: Inria PreMeDICaL team, Idesp, Université de Montpellier
+        url: https://team.inria.fr/premedical/
+date: 07-18-2024
+date-modified: last-modified
+description: |
+  Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source `R` package, `AdaptiveConformal`, which also includes tools for visualizing and summarizing conformal prediction intervals.
+abstract: >+
+  Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source `R` package, `AdaptiveConformal`, which also includes tools for visualizing and summarizing conformal prediction intervals.
+keywords: [Conformal inference, Adaptive conformal inference, time series, R]
+citation:
+  type: article-journal
+  container-title: "Computo"
+  doi: "10.57750/edan-5f53"
+  url: https://computo.sfds.asso.fr/template-computo-quarto
+  publisher: "Société Française de Statistique"
+  issn: "2824-7795"
+bibliography: references.bib
+github-user: computorg
+logo: "true"
+repo: "published-202407-susmann-adaptive-conformal"
+draft: false # set to false once the build is running
+published: true # will be set to true once accepted
+google-scholar: true
+format:
+  computo-html:
+    code-fold: true
+  computo-pdf:
+    keep-tex: true
+    include-in-header:
+      - text: |
+          \usepackage{stmaryrd}
+          \usepackage{xfrac}
 ---
 
 # Introduction
