@@ -81,7 +81,7 @@ jobs:
       - name: render
         run: |
 
-          apptainer exec --writable temp_sandbox bash -c 'echo export PATH=/opt/quarto/bin:$PATH" >> ~/.bashrc'
+          apptainer exec --writable temp_sandbox bash -c 'echo "export PATH=/opt/quarto/bin:$PATH" >> ~/.bashrc'
           apptainer exec --writable temp_sandbox bash -c 'source ~/.bashrc'
           apptainer exec image_r.sif quarto render index.qmd
 
