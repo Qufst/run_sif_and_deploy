@@ -80,10 +80,7 @@ jobs:
           
       - name: render
         run: |
-
-          apptainer exec --writable temp_sandbox echo 'export PATH=/opt/quarto/bin:$PATH' >> /etc/profile
-          apptainer exec --writable temp_sandbox export PATH=/opt/quarto/bin:$PATH
-          apptainer exec --writable temp_sandbox quarto render index.qmd
+          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
 
 
       - name: Deploy to GitHub Pages
