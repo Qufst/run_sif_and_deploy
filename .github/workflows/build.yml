@@ -70,6 +70,14 @@ jobs:
                   
           # Vérifier l'installation de Quarto
           apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
+          # Ajouter TinyTeX au PATH et mettre à jour les paquets
+          apptainer exec --writable temp_sandbox bash -c 'mkdir -p ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr path add && ~/.TinyTeX/bin/x86_64-linux/tlmgr update --self'
+
+          # Installer la police Libertinus
+          apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts'
+
+          # Vérification de l'installation de TinyTeX
+          apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr --version'
           apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
                   
 
