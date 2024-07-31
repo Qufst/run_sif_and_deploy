@@ -46,7 +46,7 @@ jobs:
           apptainer exec --writable temp_sandbox echo "QUARTO_VERSION=1.5.55" >> install_quarto.sh
           apptainer exec --writable temp_sandbox echo "mkdir -p /opt/quarto" >> install_quarto.sh
           apptainer exec --writable temp_sandbox echo "wget -qO- quarto-1.5.55-linux-amd64.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.55/quarto-1.5.55-linux-amd64.tar.gz" >> install_quarto.sh
-          apptainer exec --writable temp_sandbox echo "tar -xz -C /opt/quarto --strip-components=1 -f quarto-1.5.55-linux-amd64.tar.gz" >> /install_quarto.sh
+          apptainer exec --writable temp_sandbox echo "tar -xz -C /opt/quarto --strip-components=1 -f quarto-1.5.55-linux-amd64.tar.gz" >> install_quarto.sh
           apptainer exec --writable temp_sandbox chmod +x install_quarto.sh
           apptainer exec --writable temp_sandbox ls -la
           apptainer exec --writable temp_sandbox cat install_quarto.sh
