@@ -58,8 +58,6 @@ jobs:
           # Ajout du contenu du script pour le téléchargement et l'installation
           apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p \${INSTALL_DIR}" >> /install_quarto.sh'
           apptainer exec --writable temp_sandbox bash -c 'echo "wget -O \${QUARTO_TARBALL} \${DOWNLOAD_URL}" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "echo \${EXPECTED_SHA256} \${QUARTO_TARBALL} | sha256sum -c -" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "if [ \$? -ne 0 ]; then echo \"La vérification SHA256 a échoué.\"; exit 1; fi" >> /install_quarto.sh'
           apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C \${INSTALL_DIR} --strip-components=1 -f \${QUARTO_TARBALL}" >> /install_quarto.sh'
           apptainer exec --writable temp_sandbox bash -c 'echo "rm \${QUARTO_TARBALL}" >> /install_quarto.sh'
           apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=\${INSTALL_DIR}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'

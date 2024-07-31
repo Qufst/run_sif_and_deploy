@@ -1,4 +1,4 @@
 project:
   title: "AdaptiveConformal: An R Package for Adaptive Conformal Inference"
   render: 
-    - published-202407-susmann-adaptive-conformal.qmd
+    - index.qmd
