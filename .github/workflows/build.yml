@@ -41,18 +41,39 @@ jobs:
           
       - name: exec
         run: |
-          apptainer exec --writable temp_sandbox touch install_quarto.sh
-          apptainer exec --writable temp_sandbox echo "#!/bin/bash" >> install_quarto.sh
-          apptainer exec --writable temp_sandbox echo "QUARTO_VERSION=1.5.55" >> ./install_quarto.sh
-          apptainer exec --writable temp_sandbox echo "mkdir -p /opt/quarto" >> ./install_quarto.sh
-          apptainer exec --writable temp_sandbox echo "wget -qO- quarto-1.5.55-linux-amd64.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.55/quarto-1.5.55-linux-amd64.tar.gz" >> ./install_quarto.sh
-          apptainer exec --writable temp_sandbox echo "tar -xz -C /opt/quarto --strip-components=1 -f quarto-1.5.55-linux-amd64.tar.gz" >> ./install_quarto.sh
-          apptainer exec --writable temp_sandbox chmod +x ./install_quarto.sh
-          apptainer exec --writable temp_sandbox ls -la
-          apptainer exec --writable temp_sandbox cat ./install_quarto.sh
-          apptainer exec --writable temp_sandbox bash -c ./install_quarto.sh
-          apptainer exec --writable temp_sandbox quarto check
-
+          # Variables
+          QUARTO_VERSION="1.5.55"
+          QUARTO_TARBALL="quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
+          DOWNLOAD_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/${QUARTO_TARBALL}"
+          EXPECTED_SHA256="d47aa33..."  # Remplacez par la valeur SHA256 correcte
+                  
+          # Créer le script d'installation dans le conteneur Apptainer
+          apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_VERSION=\"'${QUARTO_VERSION}'\"" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_TARBALL=\"'${QUARTO_TARBALL}'\"" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "DOWNLOAD_URL=\"'${DOWNLOAD_URL}'\"" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "EXPECTED_SHA256=\"'${EXPECTED_SHA256}'\"" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "INSTALL_DIR=\"/opt/quarto\"" >> /install_quarto.sh'
+                  
+          # Ajout du contenu du script pour le téléchargement et l'installation
+          apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p \${INSTALL_DIR}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "wget -O \${QUARTO_TARBALL} \${DOWNLOAD_URL}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "echo \${EXPECTED_SHA256} \${QUARTO_TARBALL} | sha256sum -c -" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "if [ \$? -ne 0 ]; then echo \"La vérification SHA256 a échoué.\"; exit 1; fi" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C \${INSTALL_DIR} --strip-components=1 -f \${QUARTO_TARBALL}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "rm \${QUARTO_TARBALL}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=\${INSTALL_DIR}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
+                  
+          # Rendre le script exécutable
+          apptainer exec --writable temp_sandbox chmod +x /install_quarto.sh
+                  
+          # Exécuter le script d'installation
+          apptainer exec --writable temp_sandbox bash /install_quarto.sh
+                  
+          # Vérifier l'installation de Quarto
+          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
+                  
 
       - name: Creation of xdg_runtime_dir
         run: |
