@@ -45,7 +45,6 @@ jobs:
           QUARTO_VERSION="1.5.55"
           QUARTO_TARBALL="quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
           DOWNLOAD_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/${QUARTO_TARBALL}"
-          EXPECTED_SHA256="d47aa33..."  # Remplacez par la valeur SHA256 correcte
                   
           # Créer le script d'installation dans le conteneur Apptainer
           apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
@@ -70,6 +69,7 @@ jobs:
           apptainer exec --writable temp_sandbox bash /install_quarto.sh
                   
           # Vérifier l'installation de Quarto
+          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
           apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
                   
 
@@ -81,7 +81,6 @@ jobs:
       - name: render
         run: |
           apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
