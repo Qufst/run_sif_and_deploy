@@ -1,9 +1,9 @@
 [
   {
-    "objectID": "index_r.html",
-    "href": "index_r.html",
-    "title": "Vérification des Dépendances R",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Exemple de Document Quarto",
     "section": "",
-    "text": "Introduction\nCe document est un exemple de fichier Quarto Markdown (.qmd) qui utilise R, Jupyter, et d’autres dépendances R.\n\nlibrary(knitr)\nlibrary(ggplot2)\n\n\n# Créer un exemple de données\ndata &lt;- data.frame(\n  x = rnorm(100),\n  y = rnorm(100)\n)\n\n# Créer un graphique de dispersion\nplot &lt;- ggplot(data, aes(x = x, y = y)) +\n  geom_point() +\n  ggtitle(\"Graphique de dispersion avec ggplot2\")\n\n# Afficher le graphique\nprint(plot)\n\n\n\n\n\n\n\n\n\nlibrary(ggplot2)\n# Charger le jeu de données mtcars\ndata(\"mtcars\")\n\n# Créer un graphique de dispersion\nplot &lt;- ggplot(data = mtcars, aes(x = wt, y = mpg)) +\n  geom_point(aes(color = cyl), size = 3) +\n  labs(\n    title = \"Relation entre le Poids et la Consommation de Carburant\",\n    x = \"Poids du Véhicule (1000 lbs)\",\n    y = \"Consommation de Carburant (mpg)\",\n    color = \"Nombre de Cylindres\"\n  ) +\n  theme_minimal()\n\n# Afficher la figure\nprint(plot)\n\n\n\n\n\n\n\n# Exporter la figure en PNG\nggsave(\"figure.png\", plot = plot, width = 8, height = 6)\n\n# Exporter la figure en PDF\nggsave(\"figure.pdf\", plot = plot, width = 8, height = 6)\n\n\n\n\n\n Back to top"
+    "text": "Introduction\nCe document est un exemple de fichier Quarto Markdown (.qmd) qui utilise Python, Jupyter, nbformat et numpy.\n\n\nUtilisation de Python\n\nprint(\"Bonjour, Quarto!\")\n\nBonjour, Quarto!\n\n\n\nimport nbformat\nfrom nbformat import read\n\n# Exemple de lecture d'un notebook Jupyter\nnotebook_path = 'notebook.ipynb' \nwith open(notebook_path, 'r', encoding='utf-8') as f:\n    nb = read(f, as_version=4)\n\n# Afficher les métadonnées du notebook\nprint(nb.metadata)\n\n{'language_info': {'name': 'python'}}\n\n\n\nimport numpy as np\n\n# Création d'un tableau numpy\na = np.array([1, 2, 3, 4, 5])\nprint(\"Tableau numpy:\", a)\n\n# Calcul de la moyenne\nmoyenne = np.mean(a)\nprint(\"Moyenne:\", moyenne)\n\n# Calcul de l'écart type\necart_type = np.std(a)\nprint(\"Écart type:\", ecart_type)\n\nTableau numpy: [1 2 3 4 5]\nMoyenne: 3.0\nÉcart type: 1.4142135623730951\n\n\n\n\n\n\n Back to top"
   }
 ]
