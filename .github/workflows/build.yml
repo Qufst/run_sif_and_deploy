@@ -1,107 +1,115 @@
-name: from-singularity-deploy-papers
+  name: from-singularity-deploy-papers
 
-on:
-  push:
-    branches: ["main"]
-  repository_dispatch:
-    types: [custom-event] 
-  workflow_dispatch:
+  on:
+    push:
+      branches: ["main"]
+    repository_dispatch:
+      types: [custom-event] 
+    workflow_dispatch:
 
-permissions: 
-  contents: write
-  pages: write
+  permissions: 
+    contents: write
+    pages: write
 
-jobs:
-  download-singularity-image:
-    name: Download Singularity Image
-    runs-on: ubuntu-latest
+  jobs:
+    download-singularity-image:
+      name: Download Singularity Image
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "quentin.festor@etu.umontpellier.com"
-          git config --global user.name "quarto-github-actions"
+        - name: Configure Git
+          run: |
+            git config --global user.email "quentin.festor@etu.umontpellier.com"
+            git config --global user.name "quarto-github-actions"
 
-      - uses: eWaterCycle/setup-apptainer@v2
-        with:
-          apptainer-version: 1.3.2
+        - uses: eWaterCycle/setup-apptainer@v2
+          with:
+            apptainer-version: 1.3.2
 
-      - name: Download Singularity image artifact
-        run: |
-          gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: Download Singularity image artifact
+          run: |
+            gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: sandbox
-        run: |
-          apptainer build --sandbox temp_sandbox image_quarto.sif   
-          
-      - name: exec
-        run: |
-          # Variables
-          QUARTO_VERSION="1.5.55"
-          QUARTO_TARBALL="quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
-          DOWNLOAD_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/${QUARTO_TARBALL}"
-                  
-          # Créer le script d'installation dans le conteneur Apptainer
-          apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_VERSION=\"'${QUARTO_VERSION}'\"" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_TARBALL=\"'${QUARTO_TARBALL}'\"" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "DOWNLOAD_URL=\"'${DOWNLOAD_URL}'\"" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "EXPECTED_SHA256=\"'${EXPECTED_SHA256}'\"" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "INSTALL_DIR=\"/opt/quarto\"" >> /install_quarto.sh'
-                  
-          # Ajout du contenu du script pour le téléchargement et l'installation
-          apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p \${INSTALL_DIR}" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "wget -O \${QUARTO_TARBALL} \${DOWNLOAD_URL}" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C \${INSTALL_DIR} --strip-components=1 -f \${QUARTO_TARBALL}" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "rm \${QUARTO_TARBALL}" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=\${INSTALL_DIR}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
-                  
-          # Rendre le script exécutable
-          apptainer exec --writable temp_sandbox chmod +x /install_quarto.sh
-                  
-          # Exécuter le script d'installation
-          apptainer exec --writable temp_sandbox bash /install_quarto.sh
-                  
-          # Vérifier l'installation de Quarto
-          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
-          # Ajouter TinyTeX au PATH et mettre à jour les paquets
-          apptainer exec --writable temp_sandbox bash -c 'curl -sL "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path'
-          apptainer exec --writable temp_sandbox bash -c 'mkdir -p ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr path add && ~/.TinyTeX/bin/x86_64-linux/tlmgr update --self'
+        - name: sandbox
+          run: |
+            apptainer build --sandbox temp_sandbox image_quarto.sif   
+            
+        - name: exec
+          run: |
+            # Variables
+            QUARTO_VERSION="1.5.55"
+            QUARTO_TARBALL="quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
+            DOWNLOAD_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/${QUARTO_TARBALL}"
+                    
+            # Créer le script d'installation dans le conteneur Apptainer
+            apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_VERSION=\"'${QUARTO_VERSION}'\"" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_TARBALL=\"'${QUARTO_TARBALL}'\"" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "DOWNLOAD_URL=\"'${DOWNLOAD_URL}'\"" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "EXPECTED_SHA256=\"'${EXPECTED_SHA256}'\"" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "INSTALL_DIR=\"/opt/quarto\"" >> /install_quarto.sh'
+                    
+            # Ajout du contenu du script pour le téléchargement et l'installation
+            apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p \${INSTALL_DIR}" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "wget -O \${QUARTO_TARBALL} \${DOWNLOAD_URL}" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C \${INSTALL_DIR} --strip-components=1 -f \${QUARTO_TARBALL}" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "rm \${QUARTO_TARBALL}" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=\${INSTALL_DIR}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
+            apptainer exec --writable temp_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
+                    
+            # Rendre le script exécutable
+            apptainer exec --writable temp_sandbox chmod +x /install_quarto.sh
+                    
+            # Exécuter le script d'installation
+            apptainer exec --writable temp_sandbox bash /install_quarto.sh
+                    
+            # Vérifier l'installation de Quarto
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
+            
+            # Ajouter TinyTeX au PATH et mettre à jour les paquets
+            apptainer exec --writable temp_sandbox bash -c 'curl -sL "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path'
+            apptainer exec --writable temp_sandbox bash -c 'mkdir -p ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr path add'
+            
+            # Changer de miroir CTAN
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr option repository https://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet'
+            
+            # Mettre à jour les paquets
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr update --self'
+            
+            # Installer la police Libertinus
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus'
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts'
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-otf'
+  
 
-          # Installer la police Libertinus
-          apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus'
-          apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts'
-          apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-otf'
+            # Vérification de l'installation de TinyTeX
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
+                    
 
-          # Vérification de l'installation de TinyTeX
-          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
-                  
+        - name: Creation of xdg_runtime_dir
+          run: |
+            mkdir -p xdg_runtime_dir
+            export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
+            
+        - name: render
+          run: |
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
 
-      - name: Creation of xdg_runtime_dir
-        run: |
-          mkdir -p xdg_runtime_dir
-          export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
-          
-      - name: render
-        run: |
-          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: gh-pages
+        - name: Deploy to GitHub Pages
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./docs
+            publish_branch: gh-pages
 
 
 
-#gh run download 10005971130 -n apptainer-image -R Qufst/create_apptainer.sif
-#gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif
-#gh auth login
+  #gh run download 10005971130 -n apptainer-image -R Qufst/create_apptainer.sif image python
+  #gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif image r
+  #gh auth login
 
