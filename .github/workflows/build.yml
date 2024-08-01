@@ -80,8 +80,7 @@
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr update --self'
             
             # Installer la police Libertinus
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts --repository http://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet'
-  
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts float --repository http://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet'
 
             # Vérification de l'installation de TinyTeX
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
