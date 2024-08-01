@@ -70,21 +70,16 @@
                     
             # Vérifier l'installation de Quarto
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
-            
+
             # Ajouter TinyTeX au PATH et mettre à jour les paquets
             apptainer exec --writable temp_sandbox bash -c 'curl -sL "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path'
             apptainer exec --writable temp_sandbox bash -c 'mkdir -p ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr path add'
-            
-            # Changer de miroir CTAN
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr option repository https://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet'
             
             # Mettre à jour les paquets
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr update --self'
             
             # Installer la police Libertinus
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus'
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts'
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-otf'
   
 
             # Vérification de l'installation de TinyTeX
