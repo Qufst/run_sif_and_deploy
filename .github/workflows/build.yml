@@ -70,23 +70,7 @@
                     
             # Vérifier l'installation de Quarto
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
-  
-            # Ajouter TinyTeX au PATH et mettre à jour les paquets
-            apptainer exec --writable temp_sandbox bash -c 'curl -sL "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path'
-            apptainer exec --writable temp_sandbox bash -c 'mkdir -p ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr path add'
-            apptainer exec --writable temp_sandbox bash -c 'echo "export PATH=$PATH:~/.TinyTeX/bin/x86_64-linux" >> ~/.bashrc'
-            apptainer exec --writable temp_sandbox bash -c 'source ~/.bashrc'
-  
-            # Mettre à jour les paquets
-            apptainer exec --writable temp_sandbox bash -c 'which tlmgr'
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr update --self'
-  
-            # Installer la police Libertinus
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts'
-            
-            # Debug Information
-            apptainer exec --writable temp_sandbox bash -c 'cat /home/runner/.TinyTeX/texmf-var/web2c/tlmgr.log'
-            apptainer exec --writable temp_sandbox bash -c 'echo "Displaying tlmgr-commands.log" && cat /home/runner/.TinyTeX/texmf-var/web2c/tlmgr-commands.log'
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto update tinytex
                     
 
         - name: Creation of xdg_runtime_dir
