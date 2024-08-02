@@ -86,10 +86,7 @@
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install scheme-full'
             
             # Debug Information
-            echo "Checking TinyTeX installation..."
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr info > ~/tlmgr_info.log || exit 1'
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr list > ~/tlmgr_list.log || exit 1'
-            apptainer exec --writable temp_sandbox bash -c 'echo "Displaying .bashrc" && cat ~/.bashrc'
+            apptainer exec --writable temp_sandbox bash -c 'cat /home/runner/.TinyTeX/texmf-var/web2c/tlmgr.log'
             apptainer exec --writable temp_sandbox bash -c 'echo "Displaying tlmgr-commands.log" && cat /home/runner/.TinyTeX/texmf-var/web2c/tlmgr-commands.log'
                     
 
