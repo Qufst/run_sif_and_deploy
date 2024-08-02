@@ -6,10 +6,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Votre Nom">
-<meta name="dcterms.date" content="2023-07-22">
+<meta name="author" content="Herbert Susmann">
+<meta name="author" content="Antoine Chambaz">
+<meta name="author" content="Julie Josse">
+<meta name="dcterms.date" content="2024-07-18">
+<meta name="keywords" content="Conformal inference, Adaptive conformal inference, time series, R">
+<meta name="description" content="Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source R package, AdaptiveConformal, which also includes tools for visualizing and summarizing conformal prediction intervals.">
 
-<title>Exemple de Document Quarto – Test image apptainer</title>
+<title>AdaptiveConformal: An R Package for Adaptive Conformal Inference – Test image apptainer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,14 +106,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #FFFFFF;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #FFFFFF;
+background: #034E79;
+      }
+</style>
 
 
+<meta name="citation_title" content="AdaptiveConformal: An `R` Package for Adaptive Conformal Inference">
+<meta name="citation_abstract" content="Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source `R` package, `AdaptiveConformal`, which also includes tools for visualizing and summarizing conformal prediction intervals.
+">
+<meta name="citation_keywords" content="Conformal inference,Adaptive conformal inference,time series,R">
+<meta name="citation_author" content="Herbert Susmann">
+<meta name="citation_author" content="Antoine Chambaz">
+<meta name="citation_author" content="Julie Josse">
+<meta name="citation_publication_date" content="2024-07-18">
+<meta name="citation_cover_date" content="2024-07-18">
+<meta name="citation_year" content="2024">
+<meta name="citation_online_date" content="2024-07-18">
+<meta name="citation_fulltext_html_url" content="https://computo.sfds.asso.fr/template-computo-quarto">
+<meta name="citation_doi" content="10.57750/edan-5f53">
+<meta name="citation_issn" content="2824-7795">
+<meta name="citation_language" content="en">
+<meta name="citation_journal_title" content="Computo">
+<meta name="citation_publisher" content="Société Française de Statistique">
+<meta name="citation_reference" content="citation_title=Adaptive conformal inference under distribution shift;,citation_author=Isaac Gibbs;,citation_author=Emmanuel Candes;,citation_editor=M. Ranzato;,citation_editor=A. Beygelzimer;,citation_editor=Y. Dauphin;,citation_editor=P. S. Liang;,citation_editor=J. Wortman Vaughan;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://proceedings.neurips.cc/paper_files/paper/2021/file/0d441de75945e5acbc865406fc9a2559-Paper.pdf;,citation_volume=34;,citation_conference_title=Advances in neural information processing systems;,citation_conference=Curran Associates, Inc.;">
+<meta name="citation_reference" content="citation_title=Adaptive conformal predictions for time series;,citation_abstract=Uncertainty quantification of predictive models is crucial in decision-making problems. Conformal prediction is a general and theoretically sound answer. However, it requires exchangeable data, excluding time series. While recent works tackled this issue, we argue that Adaptive Conformal Inference (ACI, Gibbs &amp;amp;amp;amp; Candès, 2021), developed for distribution-shift time series, is a good procedure for time series with general dependency. We theoretically analyse the impact of the learning rate on its efficiency in the exchangeable and auto-regressive case. We propose a parameter-free method, AgACI, that adaptively builds upon ACI based on online expert aggregation. We lead extensive fair simulations against competing methods that advocate for ACI’s use in time series. We conduct a real case study: electricity price forecasting. The proposed aggregation algorithm provides efficient prediction intervals for day-ahead forecasting. All the code and data to reproduce the experiments are made available on GitHub.;,citation_author=Margaux Zaffran;,citation_author=Olivier Feron;,citation_author=Yannig Goude;,citation_author=Julie Josse;,citation_author=Aymeric Dieuleveut;,citation_editor=Kamalika Chaudhuri;,citation_editor=Stefanie Jegelka;,citation_editor=Le Song;,citation_editor=Csaba Szepesvari;,citation_editor=Gang Niu;,citation_editor=Sivan Sabato;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://proceedings.mlr.press/v162/zaffran22a.html;,citation_volume=162;,citation_conference_title=Proceedings of the 39th international conference on machine learning;,citation_conference=PMLR;,citation_series_title=Proceedings of machine learning research;">
+<meta name="citation_reference" content="citation_title=Conformal inference for online prediction with arbitrary distribution shifts;,citation_author=Isaac Gibbs;,citation_author=Emmanuel Candès;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://arxiv.org/abs/2208.08401;">
+<meta name="citation_reference" content="citation_title=Improved online conformal prediction via strongly adaptive online learning;,citation_abstract=We study the problem of uncertainty quantification via prediction sets, in an online setting where the data distribution may vary arbitrarily over time. Recent work develops online conformal prediction techniques that leverage regret minimization algorithms from the online learning literature to learn prediction sets with approximately valid coverage and small regret. However, standard regret minimization could be insufficient for handling changing environments, where performance guarantees may be desired not only over the full time horizon but also in all (sub-)intervals of time. We develop new online conformal prediction methods that minimize the strongly adaptive regret, which measures the worst-case regret over all intervals of a fixed length. We prove that our methods achieve near-optimal strongly adaptive regret for all interval lengths simultaneously, and approximately valid coverage. Experiments show that our methods consistently obtain better coverage and smaller prediction sets than existing methods on real-world tasks, such as time series forecasting and image classification under distribution shift.;,citation_author=Aadyot Bhatnagar;,citation_author=Huan Wang;,citation_author=Caiming Xiong;,citation_author=Yu Bai;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_conference_title=Proceedings of the 40th international conference on machine learning;,citation_conference=JMLR.org;,citation_series_title=ICML’23;">
+<meta name="citation_reference" content="citation_title=Conformal prediction: A gentle introduction;,citation_abstract=Black-box machine learning models are now routinely used in high-risk settings, like medical diagnostics, which demand uncertainty quantification to avoid consequential model failures. Conformal prediction (a.k.a. conformal inference) is a user-friendly paradigm for creating statistically rigorous uncertainty sets/intervals for the predictions of such models. Critically, the sets are valid in a distribution-free sense: they possess explicit, non-asymptotic guarantees even without distributional assumptions or model assumptions. One can use conformal prediction with any pre-trained model, such as a neural network, to produce sets that are guaranteed to contain the ground truth with a user-specified probability, such as 90%. It is easy-to-understand, easy-to-use, and general, applying naturally to problems arising in the fields of computer vision, natural language processing, deep reinforcement learning, and so on.This hands-on introduction is aimed to provide the reader a working understanding of conformal prediction and related distribution-free uncertainty quantification techniques with one self-contained document. We lead the reader through practical theory for and examples of conformal prediction and describe its extensions to complex machine learning tasks involving structured outputs, distribution shift, timeseries, outliers, models that abstain, and more. Throughout, there are many explanatory illustrations, examples, and code samples in Python. With each code sample comes a Jupyter notebook implementing the method on a real-data example; the notebooks can be accessed and easily run by following the code footnotes.;,citation_author=Anastasios N. Angelopoulos;,citation_author=Stephen Bates;,citation_publication_date=2023-03;,citation_cover_date=2023-03;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.1561/2200000101;,citation_issue=4;,citation_doi=10.1561/2200000101;,citation_issn=1935-8237;,citation_volume=16;,citation_journal_title=Found. Trends Mach. Learn.;,citation_publisher=Now Publishers Inc.;">
+<meta name="citation_reference" content="citation_title=Conformal prediction beyond exchangeability;,citation_author=Rina Foygel Barber;,citation_author=Emmanuel J. Candès;,citation_author=Aaditya Ramdas;,citation_author=Ryan J. Tibshirani;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.1214/23-AOS2276;,citation_issue=2;,citation_doi=10.1214/23-AOS2276;,citation_volume=51;,citation_journal_title=The Annals of Statistics;,citation_publisher=Institute of Mathematical Statistics;">
+<meta name="citation_reference" content="citation_title=Batch multivalid conformal prediction;,citation_author=Christopher Jung;,citation_author=Georgy Noarov;,citation_author=Ramya Ramalingam;,citation_author=Aaron Roth;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_journal_title=11th International Conference on Learning Representations (ICLR);">
+<meta name="citation_reference" content="citation_title=Practical adversarial multivalid conformal prediction;,citation_author=Osbert Bastani;,citation_author=Varun Gupta;,citation_author=Christopher Jung;,citation_author=Georgy Noarov;,citation_author=Ramya Ramalingam;,citation_author=Aaron Roth;,citation_editor=S. Koyejo;,citation_editor=S. Mohamed;,citation_editor=A. Agarwal;,citation_editor=D. Belgrave;,citation_editor=K. Cho;,citation_editor=A. Oh;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://proceedings.neurips.cc/paper_files/paper/2022/file/bcdaaa1aec3ae2aa39542acefdec4e4b-Paper-Conference.pdf;,citation_volume=35;,citation_conference_title=Advances in neural information processing systems;,citation_conference=Curran Associates, Inc.;">
+<meta name="citation_reference" content="citation_title=Algorithmic learning in a random world;,citation_author=Vladimir Vovk;,citation_author=Alex Gammerman;,citation_author=Glenn Shafer;,citation_publication_date=2005;,citation_cover_date=2005;,citation_year=2005;,citation_isbn=0387001522;">
+<meta name="citation_reference" content="citation_title=Opera: Online prediction by expert aggregation;,citation_author=Pierre Gaillard;,citation_author=Yannig Goude;,citation_author=Laurent Plagne;,citation_author=Thibaut Dubois;,citation_author=Benoit Thieurmel;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=http://pierre.gaillard.me/opera.html;">
+<meta name="citation_reference" content="citation_title=Optimal learning with bernstein online aggregation;,citation_abstract=We introduce a new recursive aggregation procedure called Bernstein Online Aggregation (BOA). Its exponential weights include a second order refinement. The procedure is optimal for the model selection aggregation problem in the bounded iid setting for the square loss: the excess of risk of its batch version achieves the fast rate of convergence $$\log (M)/n$$in deviation. The BOA procedure is the first online algorithm that satisfies this optimal fast rate. The second order refinement is required to achieve the optimality in deviation as the classical exponential weights cannot be optimal, see Audibert (Advances in neural information processing systems. MIT Press, Cambridge, MA, 2007). This refinement is settled thanks to a new stochastic conversion that estimates the cumulative predictive risk in any stochastic environment with observable second order terms. The observable second order term is shown to be sufficiently small to assert the fast rate in the iid setting when the loss is Lipschitz and strongly convex. We also introduce a multiple learning rates version of BOA. This fully adaptive BOA procedure is also optimal, up to a $$\log \log (n)$$factor.;,citation_author=Olivier Wintenberger;,citation_publication_date=2017-01-01;,citation_cover_date=2017-01-01;,citation_year=2017;,citation_fulltext_html_url=https://doi.org/10.1007/s10994-016-5592-6;,citation_issue=1;,citation_doi=10.1007/s10994-016-5592-6;,citation_issn=1573-0565;,citation_volume=106;,citation_journal_title=Machine Learning;">
+<meta name="citation_reference" content="citation_title=Scale-free online learning;,citation_abstract=We design and analyze algorithms for online linear optimization that have optimal regret and at the same time do not need to know any upper or lower bounds on the norm of the loss vectors. Our algorithms are instances of the Follow the Regularized Leader (FTRL) and Mirror Descent (MD) meta-algorithms. We achieve adaptiveness to the norms of the loss vectors by scale invariance, i.e., our algorithms make exactly the same decisions if the sequence of loss vectors is multiplied by any positive constant. The algorithm based on FTRL works for any decision set, bounded or unbounded. For unbounded decisions sets, this is the first adaptive algorithm for online linear optimization with a non-vacuous regret bound. In contrast, we show lower bounds on scale-free algorithms based on MD on unbounded domains.;,citation_author=Francesco Orabona;,citation_author=Dávid Pál;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0304397517308514;,citation_doi=https://doi.org/10.1016/j.tcs.2017.11.021;,citation_issn=0304-3975;,citation_volume=716;,citation_journal_title=Theoretical Computer Science;">
+<meta name="citation_reference" content="citation_title=Adaptive regret for control of time-varying dynamics;,citation_abstract=We consider the problem of online control of systems with time-varying linear dynamics. To state meaningful guarantees over changing environments, we introduce the metric of &amp;amp;amp;lt;i&amp;gt;adaptive regret&amp;lt;/i&amp;gt; to the field of control. This metric, originally studied in online learning, measures performance in terms of regret against the best policy in hindsight on <i>any interval in time</i>, and thus captures the adaptation of the controller to changing dynamics. Our main contribution is a novel efficient meta-algorithm: it converts a controller with sublinear regret bounds into one with sublinear <i>adaptive regret</i> bounds in the setting of time-varying linear dynamical systems. The underlying technical innovation is the first adaptive regret bound for the more general framework of online convex optimization with memory. Furthermore, we give a lower bound showing that our attained adaptive regret bound is nearly tight for this general framework.;,citation_author=Paula Gradu;,citation_author=Elad Hazan;,citation_author=Edgar Minasyan;,citation_editor=Nikolai Matni;,citation_editor=Manfred Morari;,citation_editor=George J. Pappas;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://proceedings.mlr.press/v211/gradu23a.html;,citation_volume=211;,citation_conference_title=Proceedings of the 5th annual learning for dynamics and control conference;,citation_conference=PMLR;,citation_series_title=Proceedings of machine learning research;">
+<meta name="citation_reference" content="citation_title=Prediction, learning, and games;,citation_author=Nicolo Cesa-Bianchi;,citation_author=Gabor Lugosi;,citation_publication_date=2006;,citation_cover_date=2006;,citation_year=2006;,citation_doi=10.1017/CBO9780511546921;">
+<meta name="citation_reference" content="citation_title=A collaborative multiyear, multimodel assessment of seasonal influenza forecasting in the united states;,citation_abstract=Influenza infects an estimated 9-35 million individuals each year in the United States and is a contributing cause for between 12,000 and 56,000 deaths annually. Seasonal outbreaks of influenza are common in temperate regions of the world, with highest incidence typically occurring in colder and drier months of the year. Real-time forecasts of influenza transmission can inform public health response to outbreaks. We present the results of a multiinstitution collaborative effort to standardize the collection and evaluation of forecasting models for influenza in the United States for the 2010/2011 through 2016/2017 influenza seasons. For these seven seasons, we assembled weekly real-time forecasts of seven targets of public health interest from 22 different models. We compared forecast accuracy of each model relative to a historical baseline seasonal average. Across all regions of the United States, over half of the models showed consistently better performance than the historical baseline when forecasting incidence of influenza-like illness 1 wk, 2 wk, and 3 wk ahead of available data and when forecasting the timing and magnitude of the seasonal peak. In some regions, delays in data reporting were strongly and negatively associated with forecast accuracy. More timely reporting and an improved overall accessibility to novel and traditional data sources are needed to improve forecasting accuracy and its integration with real-time public health decision making.;,citation_author=Nicholas G Reich;,citation_author=Logan C Brooks;,citation_author=Spencer J Fox;,citation_author=Sasikiran Kandula;,citation_author=Craig J McGowan;,citation_author=Evan Moore;,citation_author=Dave Osthus;,citation_author=Evan L Ray;,citation_author=Abhinav Tushar;,citation_author=Teresa K Yamana;,citation_author=Matthew Biggerstaff;,citation_author=Michael A Johansson;,citation_author=Roni Rosenfeld;,citation_author=Jeffrey Shaman;,citation_publication_date=2019-02;,citation_cover_date=2019-02;,citation_year=2019;,citation_issue=8;,citation_volume=116;,citation_journal_title=Proc. Natl. Acad. Sci. U. S. A.;">
+<meta name="citation_reference" content="citation_title=Multidimensional additive spline approximation;,citation_abstract=We describe an adaptive procedure that approximates a function of many variables by a sum of (univariate) spline functions $s_m $ of selected linear combinations $a_m x$ of the coordinates $$\phi (x) = \sum\_{1 \leqq m \leqq M} {s\_m ( a\_m \cdot x)}.$$ The procedure is nonlinear in that not only the spline coefficients but also the linear combinations are optimized for the particular problem. The sample need not lie on a regular grid, and the approximation is affine invariant, smooth, and lends itself to graphical interpretation. Function values, derivatives, and integrals are inexpensive to evaluate.;,citation_author=Jerome H. Friedman;,citation_author=Eric Grosse;,citation_author=Werner Stuetzle;,citation_publication_date=1983;,citation_cover_date=1983;,citation_year=1983;,citation_fulltext_html_url=https://doi.org/10.1137/0904023;,citation_issue=2;,citation_doi=10.1137/0904023;,citation_volume=4;,citation_journal_title=SIAM Journal on Scientific and Statistical Computing;">
+<meta name="citation_reference" content="citation_title=A tutorial on conformal prediction;,citation_abstract=Conformal prediction uses past experience to determine precise levels of confidence in new predictions. Given an error probability ε, together with a method that makes a prediction undefined of a label y, it produces a set of labels, typically containing undefined, that also contains y with probability 1 – ε. Conformal prediction can be applied to any method for producing undefined: a nearest-neighbor method, a support-vector machine, ridge regression, etc.Conformal prediction is designed for an on-line setting in which labels are predicted successively, each one being revealed before the next is predicted. The most novel and valuable feature of conformal prediction is that if the successive examples are sampled independently from the same distribution, then the successive predictions will be right 1 – ε of the time, even though they are based on an accumulating data set rather than on independent data sets.In addition to the model under which successive examples are sampled independently, other on-line compression models can also use conformal prediction. The widely used Gaussian linear model is one of these.This tutorial presents a self-contained account of the theory of conformal prediction and works through several numerical examples. A more comprehensive treatment of the topic is provided in Algorithmic Learning in a Random World, by Vladimir Vovk, Alex Gammerman, and Glenn Shafer (Springer, 2005).;,citation_author=Glenn Shafer;,citation_author=Vladimir Vovk;,citation_publication_date=2008-06;,citation_cover_date=2008-06;,citation_year=2008;,citation_issn=1532-4435;,citation_volume=9;,citation_journal_title=J. Mach. Learn. Res.;,citation_publisher=JMLR.org;">
+<meta name="citation_reference" content="citation_title=Improved Strongly Adaptive Online Learning using Coin Betting;,citation_abstract=This paper describes a new parameter-free online learning algorithm for changing environments. In comparing against algorithms with the same time complexity as ours, we obtain a strongly adaptive regret bound that is a factor of at least $\sqrt\log(T)$ better, where $T$ is the time horizon. Empirical results show that our algorithm outperforms state-of-the-art methods in learning with expert advice and metric learning scenarios.;,citation_author=Kwang-Sung Jun;,citation_author=Francesco Orabona;,citation_author=Stephen Wright;,citation_author=Rebecca Willett;,citation_editor=Aarti Singh;,citation_editor=Jerry Zhu;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_fulltext_html_url=https://proceedings.mlr.press/v54/jun17a.html;,citation_volume=54;,citation_conference_title=Proceedings of the 20th international conference on artificial intelligence and statistics;,citation_conference=PMLR;,citation_series_title=Proceedings of machine learning research;">
+<meta name="citation_reference" content="citation_title=ranger: A fast implementation of random forests for high dimensional data in C++ and R;,citation_author=Marvin N. Wright;,citation_author=Andreas Ziegler;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=1;,citation_doi=10.18637/jss.v077.i01;,citation_volume=77;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Influenza;,citation_abstract=Influenza is an infectious respiratory disease that, in humans, is caused by influenza A and influenza B viruses. Typically characterized by annual seasonal epidemics, sporadic pandemic outbreaks involve influenza A virus strains of zoonotic origin. The WHO estimates that annual epidemics of influenza result in ~1 billion infections, 3–5 million cases of severe illness and 300,000–500,000 deaths. The severity of pandemic influenza depends on multiple factors, including the virulence of the pandemic virus strain and the level of pre-existing immunity. The most severe influenza pandemic, in 1918, resulted in&amp;amp;amp;gt;40 million deaths worldwide. Influenza vaccines are formulated every year to match the circulating strains, as they evolve antigenically owing to antigenic drift. Nevertheless, vaccine efficacy is not optimal and is dramatically low in the case of an antigenic mismatch between the vaccine and the circulating virus strain. Antiviral agents that target the influenza virus enzyme neuraminidase have been developed for prophylaxis and therapy. However, the use of these antivirals is still limited. Emerging approaches to combat influenza include the development of universal influenza virus vaccines that provide protection against antigenically distant influenza viruses, but these vaccines need to be tested in clinical trials to ascertain their effectiveness.;,citation_author=Florian Krammer;,citation_author=Gavin J. D. Smith;,citation_author=Ron A. M. Fouchier;,citation_author=Malik Peiris;,citation_author=Katherine Kedzierska;,citation_author=Peter C. Doherty;,citation_author=Peter Palese;,citation_author=Megan L. Shaw;,citation_author=John Treanor;,citation_author=Robert G. Webster;,citation_author=Adolfo García-Sastre;,citation_publication_date=2018-06-28;,citation_cover_date=2018-06-28;,citation_year=2018;,citation_fulltext_html_url=https://doi.org/10.1038/s41572-018-0002-y;,citation_issue=1;,citation_doi=10.1038/s41572-018-0002-y;,citation_issn=2056-676X;,citation_volume=4;,citation_journal_title=Nature Reviews Disease Primers;">
+<meta name="citation_reference" content="citation_title=Influenza seasonality: Underlying causes and modeling theories;,citation_author=Eric Lofgren;,citation_author=N. H. Fefferman;,citation_author=Y. N. Naumov;,citation_author=J. Gorski;,citation_author=E. N. Naumova;,citation_publication_date=2007;,citation_cover_date=2007;,citation_year=2007;,citation_fulltext_html_url=https://journals.asm.org/doi/abs/10.1128/jvi.01680-06;,citation_issue=11;,citation_doi=10.1128/jvi.01680-06;,citation_volume=81;,citation_journal_title=Journal of Virology;">
+<meta name="citation_reference" content="citation_title=Results from the centers for disease control and prevention’s predict the 2013–2014 influenza season challenge;,citation_abstract=Early insights into the timing of the start, peak, and intensity of the influenza season could be useful in planning influenza prevention and control activities. To encourage development and innovation in influenza forecasting, the Centers for Disease Control and Prevention (CDC) organized a challenge to predict the 2013–14 Unites States influenza season.;,citation_author=Matthew Biggerstaff;,citation_author=David Alper;,citation_author=Mark Dredze;,citation_author=Spencer Fox;,citation_author=Isaac Chun-Hai Fung;,citation_author=Kyle S. Hickmann;,citation_author=Bryan Lewis;,citation_author=Roni Rosenfeld;,citation_author=Jeffrey Shaman;,citation_author=Ming-Hsiang Tsou;,citation_author=Paola Velardi;,citation_author=Alessandro Vespignani;,citation_author=Lyn Finelli;,citation_author=undefined Influenza Forecasting Contest Working Group;,citation_publication_date=2016-07-22;,citation_cover_date=2016-07-22;,citation_year=2016;,citation_fulltext_html_url=https://doi.org/10.1186/s12879-016-1669-x;,citation_issue=1;,citation_doi=10.1186/s12879-016-1669-x;,citation_issn=1471-2334;,citation_volume=16;,citation_journal_title=BMC Infectious Diseases;">
+<meta name="citation_reference" content="citation_title=FluSightNetwork: Cdc-flusight-ensemble repository;,citation_author=Abhinav Tushar;,citation_author=Nicholas Reich;,citation_author=Teresa Yamana;,citation_author=Dave Osthus;,citation_author=Craig McGowan;,citation_author=Evan Ray;,citation_author=undefined al.;,citation_publication_date=2018;,citation_cover_date=2018;,citation_year=2018;,citation_publisher=https://github.com/FluSightNetwork/cdc-flusight-ensemble;">
+<meta name="citation_reference" content="citation_title=conformalInference: Tools for conformal inference in regression;,citation_author=Ryan Tibshirani;,citation_author=Jacopo Diquigiovanni;,citation_author=Matteo Fontana;,citation_author=Paolo Vergottini;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;">
+<meta name="citation_reference" content="citation_title=conformalInference.fd: Tools for conformal inference for regression in multivariate functional setting;,citation_author=Jacopo Diquigiovanni;,citation_author=Matteo Fontana;,citation_author=Aldo Solari;,citation_author=Simone Vantini;,citation_author=Paolo Vergottini;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://CRAN.R-project.org/package=conformalInference.fd;">
+<meta name="citation_reference" content="citation_title=Conformal Inference of Counterfactuals and Individual Treatment Effects;,citation_abstract=Evaluating treatment effect heterogeneity widely informs treatment decision making. At the moment, much emphasis is placed on the estimation of the conditional average treatment effect via flexible machine learning algorithms. While these methods enjoy some theoretical appeal in terms of consistency and convergence rates, they generally perform poorly in terms of uncertainty quantification. This is troubling since assessing risk is crucial for reliable decision-making in sensitive and uncertain environments. In this work, we propose a conformal inference-based approach that can produce reliable interval estimates for counterfactuals and individual treatment effects under the potential outcome framework. For completely randomized or stratified randomized experiments with perfect compliance, the intervals have guaranteed average coverage in finite samples regardless of the unknown data generating mechanism. For randomized experiments with ignorable compliance and general observational studies obeying the strong ignorability assumption, the intervals satisfy a doubly robust property which states the following: the average coverage is approximately controlled if either the propensity score or the conditional quantiles of potential outcomes can be estimated accurately. Numerical studies on both synthetic and real data sets empirically demonstrate that existing methods suffer from a significant coverage deficit even in simple models. In contrast, our methods achieve the desired coverage with reasonably short intervals.;,citation_author=Lihua Lei;,citation_author=Emmanuel J. Candès;,citation_publication_date=2021-10;,citation_cover_date=2021-10;,citation_year=2021;,citation_fulltext_html_url=https://doi.org/10.1111/rssb.12445;,citation_issue=5;,citation_doi=10.1111/rssb.12445;,citation_issn=1369-7412;,citation_volume=83;,citation_journal_title=Journal of the Royal Statistical Society Series B: Statistical Methodology;">
+<meta name="citation_reference" content="citation_title=Strictly proper scoring rules, prediction, and estimation;,citation_author=Tilmann Gneiting;,citation_author=Adrian E Raftery;,citation_publication_date=2007;,citation_cover_date=2007;,citation_year=2007;,citation_fulltext_html_url=https://doi.org/10.1198/016214506000001437;,citation_issue=477;,citation_doi=10.1198/016214506000001437;,citation_volume=102;,citation_journal_title=Journal of the American Statistical Association;,citation_publisher=Taylor &amp;amp;amp; Francis;">
+<meta name="citation_reference" content="citation_title=The M4 competition: 100,000 time series and 61 forecasting methods;,citation_abstract=The M4 Competition follows on from the three previous M competitions, the purpose of which was to learn from empirical evidence both how to improve the forecasting accuracy and how such learning could be used to advance the theory and practice of forecasting. The aim of M4 was to replicate and extend the three previous competitions by: (a) significantly increasing the number of series, (b) expanding the number of forecasting methods, and (c) including prediction intervals in the evaluation process as well as point forecasts. This paper covers all aspects of M4 in detail, including its organization and running, the presentation of its results, the top-performing methods overall and by categories, its major findings and their implications, and the computational requirements of the various methods. Finally, it summarizes its main conclusions and states the expectation that its series will become a testing ground for the evaluation of new methods and the improvement of the practice of forecasting, while also suggesting some ways forward for the field.;,citation_author=Spyros Makridakis;,citation_author=Evangelos Spiliotis;,citation_author=Vassilios Assimakopoulos;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0169207019301128;,citation_issue=1;,citation_doi=https://doi.org/10.1016/j.ijforecast.2019.04.014;,citation_issn=0169-2070;,citation_volume=36;,citation_journal_title=International Journal of Forecasting;">
+<meta name="citation_reference" content="citation_title=Achieving risk control in online learning settings;,citation_author=Shai Feldman;,citation_author=Liran Ringel;,citation_author=Stephen Bates;,citation_author=Yaniv Romano;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://openreview.net/forum?id=5Y04GWvoJu;,citation_issn=2835-8856;,citation_journal_title=Transactions on Machine Learning Research;">
+<meta name="citation_reference" content="citation_title=Conformal prediction interval for dynamic time-series;,citation_abstract=We develop a method to construct distribution-free prediction intervals for dynamic time-series, called EnbPI that wraps around any bootstrap ensemble estimator to construct sequential prediction intervals. EnbPI is closely related to the conformal prediction (CP) framework but does not require data exchangeability. Theoretically, these intervals attain finite-sample, &amp;amp;amp;lt;i&amp;gt;approximately valid&amp;lt;/i&amp;gt; marginal coverage for broad classes of regression functions and time-series with strongly mixing stochastic errors. Computationally, EnbPI avoids overfitting and requires neither data-splitting nor training multiple ensemble estimators; it efficiently aggregates bootstrap estimators that have been trained. In general, EnbPI is easy to implement, scalable to producing arbitrarily many prediction intervals sequentially, and well-suited to a wide range of regression functions. We perform extensive real-data analyses to demonstrate its effectiveness.;,citation_author=Chen Xu;,citation_author=Yao Xie;,citation_editor=Marina Meila;,citation_editor=Tong Zhang;,citation_publication_date=2021;,citation_cover_date=2021;,citation_year=2021;,citation_fulltext_html_url=https://proceedings.mlr.press/v139/xu21h.html;,citation_volume=139;,citation_conference_title=Proceedings of the 38th international conference on machine learning;,citation_conference=PMLR;,citation_series_title=Proceedings of machine learning research;">
+<meta name="citation_reference" content="citation_title=Sequential predictive conformal inference for time series;,citation_abstract=We present a new distribution-free conformal prediction algorithm for sequential data (e.g., time series), called the &amp;amp;amp;lt;em&amp;gt;sequential predictive conformal inference&amp;lt;/em&amp;gt; (SPCI). We specifically account for the nature that time series data are non-exchangeable, and thus many existing conformal prediction algorithms are not applicable. The main idea is to adaptively re-estimate the conditional quantile of non-conformity scores (e.g., prediction residuals), upon exploiting the temporal dependence among them. More precisely, we cast the problem of conformal prediction interval as predicting the quantile of a future residual, given a user-specified point prediction algorithm. Theoretically, we establish asymptotic valid conditional coverage upon extending consistency analyses in quantile regression. Using simulation and real-data experiments, we demonstrate a significant reduction in interval width of SPCI compared to other existing methods under the desired empirical coverage.;,citation_author=Chen Xu;,citation_author=Yao Xie;,citation_editor=Andreas Krause;,citation_editor=Emma Brunskill;,citation_editor=Kyunghyun Cho;,citation_editor=Barbara Engelhardt;,citation_editor=Sivan Sabato;,citation_editor=Jonathan Scarlett;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://proceedings.mlr.press/v202/xu23r.html;,citation_volume=202;,citation_conference_title=Proceedings of the 40th international conference on machine learning;,citation_conference=PMLR;,citation_series_title=Proceedings of machine learning research;">
+<meta name="citation_reference" content="citation_title=FluSightNetwork/cdc-flusight-ensemble: End of 2018/2019 US influenza season;,citation_author=Abhinav Tushar;,citation_author=Nicholas G Reich;,citation_author=undefined tkcy;,citation_author=undefined brookslogan;,citation_author=undefined d-osthus;,citation_author=Craig McGowan;,citation_author=Evan Ray;,citation_author=Katie House;,citation_author=Spencer J Fox;,citation_author=Evan Moore;,citation_author=undefined lcbrooks;,citation_author=Adam Leskis;,citation_author=Xinyue X;,citation_author=undefined NutchaW;,citation_publication_date=2019-09;,citation_cover_date=2019-09;,citation_year=2019;,citation_fulltext_html_url=https://doi.org/10.5281/zenodo.3454212;,citation_doi=10.5281/zenodo.3454212;,citation_publisher=Zenodo;">
+<meta name="citation_reference" content="citation_title=GitHub - FluSightNetwork/cdc-flusight-ensemble: Guidelines and forecasts for a collaborative u.s. Influenza forecasting project;,citation_author=Flusight Network;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_fulltext_html_url=https://github.com/FluSightNetwork/;">
+<meta name="citation_reference" content="citation_title=Online conformal prediction with decaying step sizes;,citation_author=Anastasios N. Angelopoulos;,citation_author=Rina Foygel Barber;,citation_author=Stephen Bates;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://arxiv.org/abs/2402.01139;">
+<meta name="citation_reference" content="citation_title=Conformal online model aggregation;,citation_author=Matteo Gasparin;,citation_author=Aaditya Ramdas;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://arxiv.org/abs/2403.15527;">
+<meta name="citation_reference" content="citation_title=Discounted adaptive online prediction;,citation_author=Zhiyu Zhang;,citation_author=David Bombara;,citation_author=Heng Yang;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_fulltext_html_url=https://arxiv.org/abs/2402.02720;">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -125,57 +199,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Exemple de Document Quarto</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Votre Nom </p>
-          </div>
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title"><a href="https://computo.sfds.asso.fr">
+        <img src="https://computo.sfds.asso.fr/assets/img/logo_notext_white.png" height="60px">
+      </a> &nbsp; AdaptiveConformal: An <code>R</code> Package for Adaptive Conformal Inference</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> source</button></div></div>
+            <p class="subtitle lead">AdaptiveConformal: An <code>R</code> Package for Adaptive Conformal Inference</p>
+            <p><a href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/80x15.png" alt="Creative Commons BY License"></a>
+ISSN 2824-7795</p>
+            <div>
+        <div class="description">
+          <p>Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source <code>R</code> package, <code>AdaptiveConformal</code>, which also includes tools for visualizing and summarizing conformal prediction intervals.</p>
+        </div>
+      </div>
+                </div>
   </div>
     
+    <div class="quarto-title-meta-author">
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-heading">Affiliations</div>
+          
+          <div class="quarto-title-meta-contents">
+        <a href="https://herbsusmann.com">Herbert Susmann</a> <a href="https://orcid.org/0000-0002-3540-8255" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+      </div>
+          
+          <div class="quarto-title-meta-contents">
+              <p class="affiliation">
+                  <a href="https://www.ceremade.dauphine.fr/">
+                  CEREMADE (UMR 7534), Université Paris-Dauphine PSL, Place du Maréchal de Lattre de Tassigny, Paris, 75016, France
+                  </a>
+                </p>
+            </div>
+            <div class="quarto-title-meta-contents">
+        <a href="https://helios2.mi.parisdescartes.fr/~chambaz/">Antoine Chambaz</a> <a href="https://orcid.org/0000-0002-5592-6471" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+      </div>
+          
+          <div class="quarto-title-meta-contents">
+              <p class="affiliation">
+                  <a href="https://map5.mi.parisdescartes.fr/">
+                  Université Paris Cité, CNRS, MAP5, F-75006 Paris, France
+                  </a>
+                </p>
+            </div>
+            <div class="quarto-title-meta-contents">
+        <a href="http://juliejosse.com/">Julie Josse</a> <a href="https://orcid.org/0000-0001-9547-891X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+      </div>
+          
+          <div class="quarto-title-meta-contents">
+              <p class="affiliation">
+                  <a href="https://team.inria.fr/premedical/">
+                  Inria PreMeDICaL team, Idesp, Université de Montpellier
+                  </a>
+                </p>
+            </div>
+        </div>
+                    
+  <div class="quarto-title-meta">
+                                
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 18, 2024</p>
+      </div>
+    </div>
+                                    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">August 2, 2024</p>
+      </div>
+    </div>
+      
+                  
+      <div>
+      <div class="quarto-title-meta-heading">Keywords</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Conformal inference, Adaptive conformal inference, time series, R</p>
+      </div>
+    </div>
+    
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 22, 2023</p>
+      <div class="quarto-title-meta-heading">Status</div>
+      <div class="quarto-title-meta-contents">
+              <a href="https://github.com/computorg/published-202407-susmann-adaptive-conformal"><img src="https://github.com/computorg/published-202407-susmann-adaptive-conformal/actions/workflows/build.yml/badge.svg" alt="build status"></a>
+                    <p class="date"></p>
+        <a href="https://github.com/computorg/published-202407-susmann-adaptive-conformal/issues?q=is%3Aopen+is%3Aissue+label%3Areview"><img src="https://img.shields.io/badge/reviews-reports-blue" alt="reviews"></a>
+            </div>
+    </div>
+
+  </div>
+                                                
+  <div>
+    <div class="abstract">
+    <div class="abstract-title">Abstract</div>
+      <p>Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source <code>R</code> package, <code>AdaptiveConformal</code>, which also includes tools for visualizing and summarizing conformal prediction intervals.</p>
     </div>
   </div>
-  
-    
-  </div>
-  
+
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#utilisation-de-python" id="toc-utilisation-de-python" class="nav-link" data-scroll-target="#utilisation-de-python"><span class="header-section-number">2</span> Utilisation de Python</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Qufst/run_sif_and_publish/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Qufst/run_sif_and_publish/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (computo)</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-</header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>Ce document est un exemple de fichier Quarto Markdown (.qmd) qui utilise Python, Jupyter, nbformat et numpy.</p>
 </section>
-<section id="utilisation-de-python" class="level1">
-<h1>Utilisation de Python</h1>
-<div id="46d1bec5" class="cell" data-execution_count="1">
+<section id="utilisation-de-python" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Utilisation de Python</h1>
+<div id="b42f5826" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Hide/Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bonjour, Quarto!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Bonjour, Quarto!</code></pre>
 </div>
 </div>
-<div id="54be265b" class="cell" data-execution_count="2">
+<div id="7a106cd6" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Hide/Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nbformat</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbformat <span class="im">import</span> read</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -186,11 +345,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher les métadonnées du notebook</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nb.metadata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'language_info': {'name': 'python'}}</code></pre>
 </div>
 </div>
-<div id="45987f9c" class="cell" data-execution_count="3">
+<div id="6b559ec8" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Hide/Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'un tableau numpy</span></span>
@@ -204,6 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de l'écart type</span></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ecart_type <span class="op">=</span> np.std(a)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Écart type:"</span>, ecart_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tableau numpy: [1 2 3 4 5]
 Moyenne: 3.0
@@ -212,9 +375,44 @@ Moyenne: 3.0
 </div>
 
 
+<!-- -->
+
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{susmann2024,
+  author = {Susmann, Herbert and Chambaz, Antoine and Josse, Julie},
+  publisher = {Société Française de Statistique},
+  title = {AdaptiveConformal: {An} {`R`} {Package} for {Adaptive}
+    {Conformal} {Inference}},
+  journal = {Computo},
+  date = {2024-07-18},
+  url = {https://computo.sfds.asso.fr/template-computo-quarto},
+  doi = {10.57750/edan-5f53},
+  issn = {2824-7795},
+  langid = {en},
+  abstract = {Conformal Inference (CI) is a popular approach for
+    generating finite sample prediction intervals based on the output of
+    any point prediction method when data are exchangeable. Adaptive
+    Conformal Inference (ACI) algorithms extend CI to the case of
+    sequentially observed data, such as time series, and exhibit strong
+    theoretical guarantees without having to assume exchangeability of
+    the observed data. The common thread that unites algorithms in the
+    ACI family is that they adaptively adjust the width of the generated
+    prediction intervals in response to the observed data. We provide a
+    detailed description of five ACI algorithms and their theoretical
+    guarantees, and test their performance in simulation studies. We
+    then present a case study of producing prediction intervals for
+    influenza incidence in the United States based on black-box point
+    forecasts. Implementations of all the algorithms are released as an
+    open-source `R` package, `AdaptiveConformal`, which also includes
+    tools for visualizing and summarizing conformal prediction
+    intervals.}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-susmann2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Susmann, Herbert, Antoine Chambaz, and Julie Josse. 2024.
+<span>“AdaptiveConformal: An `R` Package for Adaptive Conformal
+Inference.”</span> <em>Computo</em>, July. <a href="https://doi.org/10.57750/edan-5f53">https://doi.org/10.57750/edan-5f53</a>.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -305,6 +503,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
     clipboardModal.on('success', onCopySuccess);
   }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -321,6 +570,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -634,10 +888,109 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "AdaptiveConformal: An `R` Package for Adaptive Conformal Inference"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "AdaptiveConformal: An `R` Package for Adaptive Conformal Inference"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Herbert Susmann</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">    corresponding: true</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">    email: herbps10@gmail.com</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://herbsusmann.com</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0002-3540-8255</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliations:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: CEREMADE (UMR 7534), Université Paris-Dauphine PSL, Place du Maréchal de Lattre de Tassigny, Paris, 75016, France</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">        url: https://www.ceremade.dauphine.fr/</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Antoine Chambaz</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">    email: antoine.chambaz@u-paris.fr</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://helios2.mi.parisdescartes.fr/~chambaz/</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0002-5592-6471</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliations:</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: Université Paris Cité, CNRS, MAP5, F-75006 Paris, France</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">        department:</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">        url: https://map5.mi.parisdescartes.fr/</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Julie Josse</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">    email: julie.josse@inria.fr</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">    url: http://juliejosse.com/</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0001-9547-891X</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliations:</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: Inria PreMeDICaL team, Idesp, Université de Montpellier</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">        url: https://team.inria.fr/premedical/</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 07-18-2024</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> last-modified</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">  Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source `R` package, `AdaptiveConformal`, which also includes tools for visualizing and summarizing conformal prediction intervals.</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="an">abstract:</span><span class="co"> &gt;+</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co">  Conformal Inference (CI) is a popular approach for generating finite sample prediction intervals based on the output of any point prediction method when data are exchangeable. Adaptive Conformal Inference (ACI) algorithms extend CI to the case of sequentially observed data, such as time series, and exhibit strong theoretical guarantees without having to assume exchangeability of the observed data. The common thread that unites algorithms in the ACI family is that they adaptively adjust the width of the generated prediction intervals in response to the observed data. We provide a detailed description of five ACI algorithms and their theoretical guarantees, and test their performance in simulation studies. We then present a case study of producing prediction intervals for influenza incidence in the United States based on black-box point forecasts. Implementations of all the algorithms are released as an open-source `R` package, `AdaptiveConformal`, which also includes tools for visualizing and summarizing conformal prediction intervals.</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> [Conformal inference, Adaptive conformal inference, time series, R]</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="an">citation:</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co">  type: article-journal</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co">  container-title: "Computo"</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co">  doi: "10.57750/edan-5f53"</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co">  url: https://computo.sfds.asso.fr/template-computo-quarto</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co">  publisher: "Société Française de Statistique"</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co">  issn: "2824-7795"</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="an">github-user:</span><span class="co"> computorg</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="an">logo:</span><span class="co"> "true"</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="an">repo:</span><span class="co"> "published-202407-susmann-adaptive-conformal"</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> false # set to false once the build is running</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="an">published:</span><span class="co"> true # will be set to true once accepted</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="an">google-scholar:</span><span class="co"> true</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="co">  computo-html:</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="co">  computo-pdf:</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="co">    keep-tex: true</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="co">    include-in-header:</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="co">      - text: |</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="co">          \usepackage{stmaryrd}</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="co">          \usepackage{xfrac}</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>Ce document est un exemple de fichier Quarto Markdown (.qmd) qui utilise Python, Jupyter, nbformat et numpy. </span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="fu"># Utilisation de Python</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bonjour, Quarto!"</span>)</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nbformat</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbformat <span class="im">import</span> read</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemple de lecture d'un notebook Jupyter</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>notebook_path <span class="op">=</span> <span class="st">'notebook.ipynb'</span> </span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(notebook_path, <span class="st">'r'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>) <span class="im">as</span> f:</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>    nb <span class="op">=</span> read(f, as_version<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher les métadonnées du notebook</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nb.metadata)</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Création d'un tableau numpy</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tableau numpy:"</span>, a)</span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la moyenne</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>moyenne <span class="op">=</span> np.mean(a)</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Moyenne:"</span>, moyenne)</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de l'écart type</span></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>ecart_type <span class="op">=</span> np.std(a)</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Écart type:"</span>, ecart_type)</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/Qufst/run_sif_and_publish/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Qufst/run_sif_and_publish/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Qufst/run_sif_and_publish/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Qufst/run_sif_and_publish/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
