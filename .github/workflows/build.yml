@@ -83,7 +83,6 @@
   
             # Installer la police Libertinus
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts'
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install scheme-full'
             
             # Debug Information
             apptainer exec --writable temp_sandbox bash -c 'cat /home/runner/.TinyTeX/texmf-var/web2c/tlmgr.log'
