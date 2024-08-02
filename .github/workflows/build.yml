@@ -70,7 +70,11 @@
                     
             # Vérifier l'installation de Quarto
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto install tinytex --extra=libertinus --update-path
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto install tinytex --update-path
+
+        - name: Install Libertinus fonts
+          run: |
+            apptainer exec --writable temp_sandbox tlmgr install libertinus
 
                     
 
