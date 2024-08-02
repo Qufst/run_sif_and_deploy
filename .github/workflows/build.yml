@@ -74,6 +74,8 @@
             # Ajouter TinyTeX au PATH et mettre à jour les paquets
             apptainer exec --writable temp_sandbox bash -c 'curl -sL "https://yihui.org/tinytex/install-unx.sh" | sh -s - --admin --no-path'
             apptainer exec --writable temp_sandbox bash -c 'mkdir -p ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr option sys_bin ~/.local/bin && ~/.TinyTeX/bin/x86_64-linux/tlmgr path add'
+            apptainer exec --writable temp_sandbox bash -c 'echo "export PATH=$PATH:~/.TinyTeX/bin/x86_64-linux" >> ~/.bashrc'
+            apptainer exec --writable temp_sandbox bash -c 'source ~/.bashrc'
             
             # Mettre à jour les paquets
             apptainer exec --writable temp_sandbox bash -c 'which tlmgr'
@@ -82,7 +84,9 @@
             # Installer la police Libertinus
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts --repository http://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet'
             apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install libertinus-fonts float --repository http://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet'
-            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install scheme-full
+            apptainer exec --writable temp_sandbox bash -c '~/.TinyTeX/bin/x86_64-linux/tlmgr install scheme-full'
+            apptainer exec --writable temp_sandbox bash -c 'cat ./install-tl.log'
+
 
             # Vérification de l'installation de TinyTeX
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto check
