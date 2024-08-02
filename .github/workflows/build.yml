@@ -70,7 +70,7 @@
                     
             # Vérifier l'installation de Quarto
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto update tinytex
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto install tinytex --update-path
                     
 
         - name: Creation of xdg_runtime_dir
