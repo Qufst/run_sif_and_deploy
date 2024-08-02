@@ -74,7 +74,7 @@
 
         - name: Install Libertinus fonts
           run: |
-            apptainer exec --writable temp_sandbox tlmgr install libertinus
+            apptainer exec --writable temp_sandbox tlmgr install libertinus-fonts
 
                     
 
