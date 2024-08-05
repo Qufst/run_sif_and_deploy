@@ -44,6 +44,7 @@
         - name: sandbox
           run: |
             apptainer build --sandbox temp_sandbox image_quarto.sif
+            apptainer build -sandbox r_sandbox image_r.sif
             
         - name: exec
           run: |
@@ -78,10 +79,16 @@
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto install tinytex --update-path
 
+            apptainer exec --writable r_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
+            apptainer exec --writable r_sandbox /opt/quarto/bin/quarto install tinytex --update-path
+
         - name: Install Libertinus fonts
           run: |
             apptainer exec --writable temp_sandbox tlmgr update --self
             apptainer exec --writable temp_sandbox tlmgr install libertinus-fonts
+
+            apptainer exec --writable r_sandbox tlmgr update --self
+            apptainer exec --writable r_sandbox tlmgr install libertinus-fonts
                      
         - name: Creation of xdg_runtime_dir
           run: |
@@ -91,7 +98,7 @@
         - name: render
           run: |
             apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
-            apptainer exec image_r.sif /opt/quarto/bin/quarto render index_r.qmd
+            apptainer exec r_sandbox /opt/quarto/bin/quarto render index_r.qmd
 
         - name: Deploy to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3
