@@ -35,9 +35,15 @@
           env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+        - name: Download Singularity image artifact
+          run: |
+            gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
         - name: sandbox
           run: |
-            apptainer build --sandbox temp_sandbox image_quarto.sif   
+            apptainer build --sandbox temp_sandbox image_quarto.sif
             
         - name: exec
           run: |
@@ -86,7 +92,7 @@
             
         - name: render
           run: |
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render mixte.qmd
 
         - name: Deploy to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3

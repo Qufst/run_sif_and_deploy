@@ -1,0 +1,91 @@
+---
+title: "Analyse Multi-Environnement avec Apptainer"
+author: "Votre Nom"
+date: "2024-08-05"
+format: html
+---
+
+# Introduction
+
+Ce document présente une analyse de données utilisant deux environnements de conteneurisation distincts pour Python et R. Les images Apptainer `image.sif` et `image_r.sif` seront utilisées pour exécuter les analyses respectivement en Python et en R.
+
+## Analyse des données en Python
+
+Dans cette section, nous explorerons un ensemble de données simple et effectuerons des analyses de base en utilisant l'environnement Python.
+
+```{python}
+#| container: apptainer
+#| image: image.sif
+
+import numpy as np
+import pandas as pd
+
+# Générer un DataFrame de données aléatoires
+np.random.seed(42)
+data = pd.DataFrame({
+    'Feature1': np.random.randn(100),
+    'Feature2': np.random.randn(100),
+    'Outcome': np.random.choice([0, 1], size=100)
+})
+
+# Afficher les premières lignes du DataFrame
+data.head()
+```
+
+```{python}
+#| container: apptainer
+#| image: image.sif
+
+# Statistiques descriptives
+data.describe()
+```
+
+```{python}
+#| container: apptainer
+#| image: image.sif
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Visualisation de la distribution des variables
+plt.figure(figsize=(10, 6))
+sns.histplot(data['Feature1'], kde=True, color='blue', label='Feature1')
+sns.histplot(data['Feature2'], kde=True, color='red', label='Feature2')
+plt.legend()
+plt.title('Distribution des Features')
+plt.show()
+```
+
+```{R}
+#| container: apptainer
+#| image: image_r.sif
+
+# Charger les données intégrées de R
+data(mtcars)
+
+# Afficher les premières lignes du dataset
+head(mtcars)
+```
+
+```{R}
+#| container: apptainer
+#| image: image_r.sif
+
+summary(mtcars)
+```
+
+```{R}
+#| container: apptainer
+#| image: image_r.sif
+
+# Visualisation de la relation entre la consommation d'essence et la cylindrée
+plot(mtcars$mpg, mtcars$cyl,
+     xlab = "Miles per Gallon",
+     ylab = "Number of Cylinders",
+     main = "Relation between MPG and Cylinders",
+     pch = 19, col = "blue")
+```
+
+
+
+
