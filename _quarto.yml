@@ -3,6 +3,7 @@ project:
   output-dir: docs
   render:
     - index.qmd
+    - index_r.qmd
 
 website:
   repo-url: https://github.com/Qufst/run_sif_and_publish

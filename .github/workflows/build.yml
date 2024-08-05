@@ -44,6 +44,7 @@
         - name: sandbox
           run: |
             apptainer build --sandbox temp_sandbox image_quarto.sif
+            apptainer build --sandbox r_sandbox
             
         - name: exec
           run: |
@@ -83,8 +84,43 @@
             apptainer exec --writable temp_sandbox tlmgr update --self
             apptainer exec --writable temp_sandbox tlmgr install libertinus-fonts
 
+        - name: exec
+          run: |
+            # Variables
+            QUARTO_VERSION="1.5.55"
+            QUARTO_TARBALL="quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
+            DOWNLOAD_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/${QUARTO_TARBALL}"
                     
-
+            # Créer le script d'installation dans le conteneur Apptainer
+            apptainer exec --writable r_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "QUARTO_VERSION=\"'${QUARTO_VERSION}'\"" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "QUARTO_TARBALL=\"'${QUARTO_TARBALL}'\"" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "DOWNLOAD_URL=\"'${DOWNLOAD_URL}'\"" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "EXPECTED_SHA256=\"'${EXPECTED_SHA256}'\"" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "INSTALL_DIR=\"/opt/quarto\"" >> /install_quarto.sh'
+                    
+            # Ajout du contenu du script pour le téléchargement et l'installation
+            apptainer exec --writable r_sandbox bash -c 'echo "mkdir -p \${INSTALL_DIR}" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "wget -O \${QUARTO_TARBALL} \${DOWNLOAD_URL}" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "tar -xz -C \${INSTALL_DIR} --strip-components=1 -f \${QUARTO_TARBALL}" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "rm \${QUARTO_TARBALL}" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "echo \"export PATH=\${INSTALL_DIR}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
+            apptainer exec --writable r_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
+                    
+            # Rendre le script exécutable
+            apptainer exec --writable r_sandbox chmod +x /install_quarto.sh
+                    
+            # Exécuter le script d'installation
+            apptainer exec --writable r_sandbox bash /install_quarto.sh
+                    
+            # Vérifier l'installation de Quarto
+            apptainer exec --writable r_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
+            apptainer exec --writable r_sandbox /opt/quarto/bin/quarto install tinytex --update-path 
+        - name: Install Libertinus fonts
+          run: |
+            apptainer exec --writable r_sandbox tlmgr update --self
+            apptainer exec --writable r_sandbox tlmgr install libertinus-fonts 
+                     
         - name: Creation of xdg_runtime_dir
           run: |
             mkdir -p xdg_runtime_dir
@@ -92,7 +128,8 @@
             
         - name: render
           run: |
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render mixte.qmd
+            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
+            apptainer exec --writable r_sandbox /opt/quarto/bin/quarto render index_r.qmd
 
         - name: Deploy to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3
