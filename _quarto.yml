@@ -17,6 +17,12 @@ website:
       - icon: github
         href: https://github.com/Qufst/run_sif_and_publish
         text: GitHub
+    left:
+      - href: index.qmd
+        text: python
+      - href: index_r.qmd
+        text: R
+      
 
 jupyter: python3
 
