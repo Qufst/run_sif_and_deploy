@@ -31,7 +31,7 @@
 
         - name: Download Singularity image artifact
           run: |
-            curl -L -o python.zip https://zenodo.org/record/12799286/files/python.zip
+            curl -L https://zenodo.org/record/12799286/files/python.zip
             unzip python.zip
 
 
