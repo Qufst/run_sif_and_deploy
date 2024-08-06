@@ -31,10 +31,15 @@
 
         - name: Download Apptainer image from Zenodo
           run: |
-            wget --header="Authorization: Bearer YOUR_ACCESS_TOKEN" -O python.zip "https://zenodo.org/api/records/12799286/files/python.zip?download=1"
+            curl -L -H "Authorization: Bearer ${{ secrets.ZENODO }}" -o python.zip "https://zenodo.org/record/12799286/files/python.zip?download=1"
             head -c 100 python.zip
-          env:
-            YOUR_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
+            file python.zip
+    
+        - name: Unzip and verify the file
+          run: |
+            unzip python.zip || echo "File is not a valid ZIP archive"
+            # List files to ensure extraction worked correctly
+            ls -l
 
 
 #gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
@@ -49,7 +54,6 @@
 
         - name: sandbox
           run: |
-            unzip python.zip
             apptainer build --sandbox temp_sandbox image_quarto.sif
             
         - name: exec
