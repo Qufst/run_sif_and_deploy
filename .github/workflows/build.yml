@@ -31,9 +31,13 @@
 
         - name: Download Singularity image artifact
           run: |
-            gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            curl -L -o python.zip https://zenodo.org/record/12799286/files/python.zip
+            unzip python.zip
+
+
+#gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
+#env:
+#GH_TOKEN: ${{ secrets.GITHUB_TOKEN }
 
         - name: Download Singularity image artifact
           run: |
