@@ -31,9 +31,11 @@
 
         - name: Download Apptainer image from Zenodo
           run: |
-            curl -H "Authorization: Bearer ${{ secrets.ZENODO }}" -O https://zenodo.org/record/12799286/files/python.zip
+            wget https://zenodo.org/uploads/12799286/files/python.zip
             head -c 100 python.zip
             file python.zip
+          env:
+            GH_TOKEN: ${{secrets.ZENODO}}
     
         - name: Unzip and verify the file
           run: |
