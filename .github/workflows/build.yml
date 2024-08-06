@@ -29,14 +29,12 @@
           with:
             apptainer-version: 1.3.2
 
-        - name: Download Singularity image artifact
+        - name: Download Apptainer image from Zenodo
           run: |
-            wget -O python.zip "https://zenodo.org/api/records/12799286/draft/files/python.zip/content?access_token=YOUR_ACCESS_TOKEN"
-
+            wget --header="Authorization: Bearer YOUR_ACCESS_TOKEN" -O python.zip "https://zenodo.org/api/records/12799286/files/python.zip?download=1"
             head -c 100 python.zip
-            file python.zip
-
-            unzip python.zip
+          env:
+            YOUR_ACCESS_TOKEN: ${{ secrets.ZENODO_ACCESS_TOKEN }}
 
 
 #gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
@@ -51,6 +49,7 @@
 
         - name: sandbox
           run: |
+            unzip python.zip
             apptainer build --sandbox temp_sandbox image_quarto.sif
             
         - name: exec
