@@ -31,9 +31,9 @@
 
         - name: Download Apptainer image from Zenodo
           run: |
-            wget https://zenodo.org/uploads/12799286/Files/python.zip
-            head -c 100 python.zip
-            file python.zip
+            pip3 install git+https://github.com/dvolgyes/zenodo_get
+            zenodo_get 12799286
+
           env:
             GH_TOKEN: ${{secrets.ZENODO}}
     
