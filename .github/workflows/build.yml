@@ -42,17 +42,18 @@
             unzip python.zip || echo "File is not a valid ZIP archive"
             # List files to ensure extraction worked correctly
             ls -l
+            unzip R_with_quarto.zip
 
 
 #gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
 #env:
 #GH_TOKEN: ${{ secrets.GITHUB_TOKEN }
 
-        - name: Download Singularity image artifact
-          run: |
-            gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #- name: Download Singularity image artifact
+        #  run: |
+        #    gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif
+        #  env:
+        #    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }
 
         - name: sandbox
           run: |
