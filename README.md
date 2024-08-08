@@ -8,7 +8,8 @@ Create an apptainer environnement on [create_sif_repository](https://github.com/
 
 ## Use this repository
 - Clone the repository
-- Copy the number of the run and write it in the workflows in the command "gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif".
+- Copy the number of the run and write it in the workflows in the command "gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif". 
+You also could use an apptainer picture based on zenodo like https://github.com/Qufst/run_sif_and_deploy/actions/runs/10281112954.
 - Replace image_quarto.sif by the name of the apptainer pictures you download in the workflows.
 - import in the repository the qmd you want to render, with every dependencies you need. 
 
