@@ -33,7 +33,7 @@ jobs:
         run: |
           pip3 install git+https://github.com/dvolgyes/zenodo_get
           zenodo_get 10.5281/zenodo.13271931
-          zenodo_get 10.5281/zenodo.12799285
+          zenodo_get 10.5281/zenodo.12799286
         env:
           GH_TOKEN: ${{secrets.ZENODO}}
   
