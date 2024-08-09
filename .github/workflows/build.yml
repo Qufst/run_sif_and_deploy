@@ -44,7 +44,7 @@ jobs:
 
       - name: sandbox
         run: |
-          apptainer build --sandbox temp_sandbox image_quarto.sif
+          apptainer build --sandbox temp_sandbox image.sif
 
       - name: modify quarto version
         env:
