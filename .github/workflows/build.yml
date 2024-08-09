@@ -57,11 +57,11 @@ jobs:
 
           # Créer le script d'installation dans le conteneur Apptainer
           apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p $INSTALL_DIR" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "wget -O $QUARTO_TARBALL $DOWNLOAD_URL" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C $INSTALL_DIR --strip-components=1 -f $QUARTO_TARBALL" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "rm $QUARTO_TARBALL" >> /install_quarto.sh'
-          apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=$INSTALL_DIR/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p ${{ env.INSTALL_DIR }}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "wget -O ${{ env.QUARTO_TARBALL}} ${{ env.DOWNLOAD_URL }}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C ${{ env.INSTALL_DIR }} --strip-components=1 -f ${{ env.QUARTO_TARBALL }}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "rm ${{ env.QUARTO_TARBALL}}" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=${{ env.INSTALL_DIR }}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
           apptainer exec --writable temp_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
                 
           # Rendre le script exécutable
