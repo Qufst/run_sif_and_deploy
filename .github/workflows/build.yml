@@ -1,122 +1,95 @@
-  name: from-singularity-deploy-papers
+name: from-singularity-deploy-papers
 
-  on:
-    push:
-      branches: ["main"]
-    repository_dispatch:
-      types: [custom-event] 
-    workflow_dispatch:
+on:
+  push:
+    branches: ["main"]
+  repository_dispatch:
+    types: [custom-event]
+  workflow_dispatch:
 
-  permissions: 
-    contents: write
-    pages: write
+permissions:
+  contents: write
+  pages: write
 
-  jobs:
-    download-singularity-image:
-      name: Download Singularity Image
-      runs-on: ubuntu-latest
+jobs:
+  download-singularity-image:
+    name: Download Singularity Image
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-        - name: Configure Git
-          run: |
-            git config --global user.email "quentin.festor@etu.umontpellier.com"
-            git config --global user.name "quarto-github-actions"
+      - name: Configure Git
+        run: |
+          git config --global user.email "quentin.festor@etu.umontpellier.com"
+          git config --global user.name "quarto-github-actions"
 
-        - uses: eWaterCycle/setup-apptainer@v2
-          with:
-            apptainer-version: 1.3.2
+      - uses: eWaterCycle/setup-apptainer@v2
+        with:
+          apptainer-version: 1.3.2
 
-        - name: Download Apptainer image from Zenodo
-          run: |
-            pip3 install git+https://github.com/dvolgyes/zenodo_get
-            zenodo_get 10.5281/zenodo.12799286
+      - name: Download Apptainer image from Zenodo
+        run: |
+          pip3 install git+https://github.com/dvolgyes/zenodo_get
+          zenodo_get 10.5281/zenodo.12799286
+        env:
+          GH_TOKEN: ${{secrets.ZENODO}}
+  
+      - name: Unzip and verify the file
+        run: |
+          unzip apptainer-image(1).zip || echo "File is not a valid ZIP archive"
+          ls -l
+          unzip R_with_quarto.zip
 
-          env:
-            GH_TOKEN: ${{secrets.ZENODO}}
-    
-        - name: Unzip and verify the file
-          run: |
-            unzip python.zip || echo "File is not a valid ZIP archive"
-            # List files to ensure extraction worked correctly
-            ls -l
-            unzip R_with_quarto.zip
+      - name: sandbox
+        run: |
+          apptainer build --sandbox temp_sandbox image_quarto.sif
 
+      - name: modify quarto version
+        env:
+          QUARTO_VERSION: "1.5.55"
+          QUARTO_TARBALL: "quarto-${{ env.QUARTO_VERSION }}-linux-amd64.tar.gz"
+          DOWNLOAD_URL: "https://github.com/quarto-dev/quarto-cli/releases/download/v${{ env.QUARTO_VERSION }}/${{ env.QUARTO_TARBALL }}"
+          INSTALL_DIR: "/opt/quarto"
+        run: |
+          apptainer exec --writable temp_sandbox rm -rf /opt/quarto
 
-#gh run download 10160047868 -n apptainer-image -R Qufst/create_apptainer.sif
-#env:
-#GH_TOKEN: ${{ secrets.GITHUB_TOKEN }
+          # Créer le script d'installation dans le conteneur Apptainer
+          apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p $INSTALL_DIR" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "wget -O $QUARTO_TARBALL $DOWNLOAD_URL" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C $INSTALL_DIR --strip-components=1 -f $QUARTO_TARBALL" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "rm $QUARTO_TARBALL" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=$INSTALL_DIR/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
+          apptainer exec --writable temp_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
+                
+          # Rendre le script exécutable
+          apptainer exec --writable temp_sandbox chmod +x /install_quarto.sh
+                
+          # Exécuter le script d'installation
+          apptainer exec --writable temp_sandbox bash /install_quarto.sh
 
-        #- name: Download Singularity image artifact
-        #  run: |
-        #    gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif
-        #  env:
-        #    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }
+      - name: Install Libertinus fonts, tinytex et extension computo
+        run: |
+          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
+          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto install tinytex --update-path
+          apptainer exec --writable temp_sandbox tlmgr update --self
+          apptainer exec --writable temp_sandbox tlmgr install libertinus-fonts
+                   
+      - name: Creation of xdg_runtime_dir
+        run: |
+          mkdir -p xdg_runtime_dir
+          export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
+          
+      - name: render
+        run: |
+          apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
+          apptainer exec image_r.sif /opt/quarto/bin/quarto render index_r.qmd
 
-        - name: sandbox
-          run: |
-            apptainer build --sandbox temp_sandbox image_quarto.sif
-            
-        - name: exec
-          run: |
-            # Variables
-            QUARTO_VERSION="1.5.55"
-            QUARTO_TARBALL="quarto-${QUARTO_VERSION}-linux-amd64.tar.gz"
-            DOWNLOAD_URL="https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/${QUARTO_TARBALL}"
-                    
-            # Créer le script d'installation dans le conteneur Apptainer
-            apptainer exec --writable temp_sandbox bash -c 'echo "#!/bin/bash" > /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_VERSION=\"'${QUARTO_VERSION}'\"" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "QUARTO_TARBALL=\"'${QUARTO_TARBALL}'\"" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "DOWNLOAD_URL=\"'${DOWNLOAD_URL}'\"" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "EXPECTED_SHA256=\"'${EXPECTED_SHA256}'\"" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "INSTALL_DIR=\"/opt/quarto\"" >> /install_quarto.sh'
-                    
-            # Ajout du contenu du script pour le téléchargement et l'installation
-            apptainer exec --writable temp_sandbox bash -c 'echo "mkdir -p \${INSTALL_DIR}" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "wget -O \${QUARTO_TARBALL} \${DOWNLOAD_URL}" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "tar -xz -C \${INSTALL_DIR} --strip-components=1 -f \${QUARTO_TARBALL}" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "rm \${QUARTO_TARBALL}" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "echo \"export PATH=\${INSTALL_DIR}/bin:\$PATH\" >> ~/.bashrc" >> /install_quarto.sh'
-            apptainer exec --writable temp_sandbox bash -c 'echo "source ~/.bashrc" >> /install_quarto.sh'
-                    
-            # Rendre le script exécutable
-            apptainer exec --writable temp_sandbox chmod +x /install_quarto.sh
-                    
-            # Exécuter le script d'installation
-            apptainer exec --writable temp_sandbox bash /install_quarto.sh
-                    
-            # Vérifier l'installation de Quarto
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto add --no-prompt computorg/computo-quarto-extension
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto install tinytex --update-path
-
-        - name: Install Libertinus fonts
-          run: |
-            apptainer exec --writable temp_sandbox tlmgr update --self
-            apptainer exec --writable temp_sandbox tlmgr install libertinus-fonts
-                     
-        - name: Creation of xdg_runtime_dir
-          run: |
-            mkdir -p xdg_runtime_dir
-            export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
-            
-        - name: render
-          run: |
-            apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
-            apptainer exec image_r.sif /opt/quarto/bin/quarto render index_r.qmd
-
-        - name: Deploy to GitHub Pages
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./docs
-            publish_branch: gh-pages
-
-
-
-  #gh run download 10005971130 -n apptainer-image -R Qufst/create_apptainer.sif image python
-  #gh run download 10112698165 -n apptainer-image -R Qufst/create_apptainer.sif image r
-  #gh auth login
-
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
