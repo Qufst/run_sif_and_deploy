@@ -82,9 +82,13 @@ jobs:
           mkdir -p xdg_runtime_dir
           export XDG_RUNTIME_DIR=~/xdg_runtime_dir 
           
-      - name: render
+      - name: render 1
         run: |
           apptainer exec --writable temp_sandbox /opt/quarto/bin/quarto render index.qmd
+          apptainer exec image_r.sif /opt/quarto/bin/quarto render index_r.qmd
+
+      - name: render 2
+        run: |
           apptainer exec image_r.sif /opt/quarto/bin/quarto render index_r.qmd
 
       - name: Deploy to GitHub Pages
