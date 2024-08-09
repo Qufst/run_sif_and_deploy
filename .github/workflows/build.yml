@@ -33,13 +33,13 @@ jobs:
         run: |
           pip3 install git+https://github.com/dvolgyes/zenodo_get
           zenodo_get 10.5281/zenodo.13271931
+          zenodo_get 10.5281/zenodo.12799285
         env:
           GH_TOKEN: ${{secrets.ZENODO}}
   
       - name: Unzip and verify the file
         run: |
-          unzip apptainer-image(1).zip || echo "File is not a valid ZIP archive"
-          ls -l
+          unzip python_with_quarto.zip || echo "File is not a valid ZIP archive"
           unzip R_with_quarto.zip
 
       - name: sandbox
